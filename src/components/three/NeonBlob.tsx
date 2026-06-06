@@ -96,7 +96,10 @@ export default function NeonBlob() {
       camera={{ position: [0, 0, 4], fov: 45 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
-      className="!touch-none"
+      // Allow vertical scroll gestures to pass through to the page so a finger
+      // on the blob doesn't trap the user on the hero. Mouse parallax (desktop)
+      // is unaffected — touch-action only governs touch input.
+      className="!touch-pan-y"
     >
       <Scene />
     </Canvas>
