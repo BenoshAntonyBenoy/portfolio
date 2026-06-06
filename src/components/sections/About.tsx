@@ -27,17 +27,16 @@ export default function About() {
             <div className="absolute inset-0 animate-pulse-glow rounded-full bg-[conic-gradient(from_0deg,#a855f7,#22d3ee,#ec4899,#a855f7)] blur-md" />
             {/* Themed backdrop so any breathing room reads as an intentional vignette */}
             <div className="absolute inset-[3px] rounded-full bg-[radial-gradient(circle_at_50%_35%,#1a1230,#0a0a0f)]" />
-            {/* Photo. Two knobs to fine-tune framing:
-                  backgroundSize     = zoom  (lower % = more zoomed out; ~72% shows the whole photo)
-                  backgroundPosition = focal (lower 2nd value pans the view toward the top of the photo) */}
+            {/* Photo. `cover` fills the whole circle (cropping top/bottom as
+                needed); backgroundPosition keeps the face roughly centered. */}
             <div
               role="img"
               aria-label="Benosh Benoy"
               className="absolute inset-[3px] rounded-full bg-no-repeat"
               style={{
                 backgroundImage: "url(/me.png)",
-                backgroundSize: "90%",
-                backgroundPosition: "center 22%",
+                backgroundSize: "cover",
+                backgroundPosition: "center 30%",
               }}
             />
             {/* floating accent dot */}
