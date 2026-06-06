@@ -16,13 +16,15 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Benosh Benoy — Developer. Designer. Strategist.",
   description:
-    "Portfolio of Benosh Benoy — software developer with a strong design sensibility. Projects in Python, AI, and UI/UX design.",
+    "Portfolio of Benosh Benoy — Computer Science student building at the intersection of code, AI, and design. Projects in Python, AI, and UI/UX.",
   metadataBase: new URL("https://benoshbenoy.vercel.app"),
   openGraph: {
     title: "Benosh Benoy — Developer. Designer. Strategist.",
-    description:
-      "Software developer with a strong design sensibility. Python, AI, and UI/UX.",
+    description: "Computer Science student. Code, AI, and UI/UX design.",
     type: "website",
+  },
+  twitter: {
+    description: "Computer Science student. Code, AI, and UI/UX design.",
   },
 };
 
