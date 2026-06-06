@@ -143,8 +143,8 @@ export const contactLinks: ContactLink[] = [
   },
   {
     label: "GitHub",
-    value: "@benoshbenoy",
-    href: "https://github.com/benoshbenoy",
+    value: "@BenoshAntonyBenoy",
+    href: "https://github.com/BenoshAntonyBenoy",
     iconName: "github",
   },
   {
