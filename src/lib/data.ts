@@ -69,11 +69,11 @@ export const projects: Project[] = [
     accent: "#22d3ee",
   },
   {
-    title: "Locally Trained LLM",
-    tag: "AI project",
+    title: "ML Regression Models",
+    tag: "Machine Learning",
     description:
-      "Trained and fine-tuned a language model running entirely on local hardware — exploring data prep, training loops, and inference without relying on the cloud.",
-    tech: ["Python", "PyTorch", "Transformers", "Fine-tuning"],
+      "A series of regression experiments predicting numerical outcomes across small datasets — exploring feature engineering, model selection, and evaluation metrics in practice.",
+    tech: ["Python", "scikit-learn", "Pandas", "NumPy"],
     accent: "#a855f7",
   },
 ];

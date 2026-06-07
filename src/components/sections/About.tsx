@@ -6,7 +6,13 @@ import CountUp from "@/components/ui/CountUp";
 
 const stats = [
   { to: 100, suffix: "+", label: "UI designs crafted" },
-  { to: 1, suffix: "", label: "Trained a local LLM", display: "🧠" },
+  {
+    to: 1,
+    suffix: "",
+    label: "ML Models Trained",
+    sub: "Regression models across multiple projects",
+    display: "📊",
+  },
   { to: 1, suffix: "", label: "Hackathon participant", display: "⚡" },
 ];
 
@@ -86,6 +92,9 @@ export default function About() {
                 )}
               </div>
               <p className="mt-3 text-sm text-white/50">{s.label}</p>
+              {s.sub && (
+                <p className="mt-1 text-xs text-white/30">{s.sub}</p>
+              )}
             </div>
           </Reveal>
         ))}
