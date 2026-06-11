@@ -86,9 +86,6 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const reversed = index % 2 === 1;
   const hasWindow = index === 0;
-  const ctaLabel = /case study/i.test(project.tag)
-    ? "Read Case Study"
-    : "View Project";
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -161,17 +158,6 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
               </span>
             ))}
           </div>
-        </Reveal>
-        <Reveal delay={0.4}>
-          <a
-            href="#"
-            className="group/cta mt-8 inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-neon-cyan/50 hover:bg-white/5 hover:text-white hover:shadow-glow-cyan"
-          >
-            {ctaLabel}
-            <span className="transition-transform duration-300 group-hover/cta:translate-x-1">
-              →
-            </span>
-          </a>
         </Reveal>
       </div>
     </div>
