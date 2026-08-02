@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import PortalButtons from "@/components/ui/PortalButtons";
 
 // Three.js / R3F is client-only — load the Canvas without SSR.
 const NeonBlob = dynamic(() => import("@/components/three/NeonBlob"), {
@@ -73,16 +74,31 @@ export default function Hero() {
             code, AI, and design.
           </motion.p>
 
-          <motion.div variants={item} className="mt-9 flex flex-wrap gap-4">
+          <motion.p
+            variants={item}
+            className="mt-9 font-mono text-[11px] uppercase tracking-[0.25em] text-white/35"
+          >
+            My sites
+          </motion.p>
+
+          <motion.div variants={item} className="mt-3">
+            <PortalButtons />
+          </motion.div>
+
+          <motion.div
+            variants={item}
+            className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm"
+          >
             <a
               href="#projects"
-              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-neon-purple to-neon-cyan px-6 py-3 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
+              className="font-semibold text-white/70 transition-colors hover:text-white"
             >
-              View my work
+              Or scroll my work ↓
             </a>
+            <span className="hidden h-3 w-px bg-white/15 sm:block" />
             <a
               href="#contact"
-              className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition-all hover:border-neon-cyan/50 hover:bg-white/5 hover:shadow-glow-cyan"
+              className="text-white/50 transition-colors hover:text-neon-cyan"
             >
               Get in touch
             </a>

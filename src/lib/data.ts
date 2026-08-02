@@ -78,6 +78,40 @@ export const projects: Project[] = [
   },
 ];
 
+export type LiveSite = {
+  title: string;
+  tag: string;
+  domain: string; // shown as the link label
+  href: string;
+  description: string;
+  tech: string[];
+  accent: string;
+};
+
+// Things that are actually deployed and clickable — each opens in a new tab.
+export const liveSites: LiveSite[] = [
+  {
+    title: "Portfolio",
+    tag: "Live site",
+    domain: "portfolio.benosh.tech",
+    href: "https://portfolio.benosh.tech",
+    description:
+      "A second take on my portfolio — an editorial, arena-style layout with the same work presented in a very different visual language.",
+    tech: ["React", "Vite", "TypeScript", "Tailwind"],
+    accent: "#a855f7",
+  },
+  {
+    title: "BQuick",
+    tag: "Live app",
+    domain: "bquick.benosh.tech",
+    href: "https://bquick.benosh.tech",
+    description:
+      "A typing trainer that measures the rhythm between your keystrokes, finds your weakest key-to-key transitions, and drills them with real words until they smooth out.",
+    tech: ["JavaScript", "Web Audio", "localStorage"],
+    accent: "#22d3ee",
+  },
+];
+
 export type Achievement = {
   title: string;
   detail: string;

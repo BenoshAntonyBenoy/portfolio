@@ -1,3 +1,5 @@
+import { liveSites } from "@/lib/data";
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -6,6 +8,19 @@ export default function Footer() {
         <p className="font-mono">
           © {year} Benosh Benoy. All rights reserved.
         </p>
+        <nav className="flex items-center gap-5 font-mono text-xs">
+          {liveSites.map((site) => (
+            <a
+              key={site.href}
+              href={site.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white/80"
+            >
+              {site.domain} ↗
+            </a>
+          ))}
+        </nav>
         <p className="flex items-center gap-2">
           Made with
           <span className="text-white/70">Next.js</span>+
