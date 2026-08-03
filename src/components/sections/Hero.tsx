@@ -1,16 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import PortalButtons from "@/components/ui/PortalButtons";
-
-// Three.js / R3F is client-only — load the Canvas without SSR.
-const NeonBlob = dynamic(() => import("@/components/three/NeonBlob"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-full w-full animate-pulse-glow rounded-full bg-radial-fade" />
-  ),
-});
+// Picks the 3D avatar or a static photo, and owns the client-only dynamic import.
+import HeroVisual from "@/components/three/HeroVisual";
 
 const container = {
   hidden: {},
@@ -81,9 +74,10 @@ export default function Hero() {
             My sites
           </motion.p>
 
-          <motion.div variants={item} className="mt-3">
+          {/* PortalButtons owns its own entrance stagger, so no variant wrapper. */}
+          <div className="mt-3">
             <PortalButtons />
-          </motion.div>
+          </div>
 
           <motion.div
             variants={item}
@@ -114,17 +108,17 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right — 3D blob */}
+        {/* Right — 3D me, watching the cursor */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="relative mx-auto aspect-square w-full max-w-md md:max-w-none"
         >
-          {/* Layered ambient glow so the blob sits in a pool of light. */}
+          {/* Layered ambient glow so the avatar sits in a pool of light. */}
           <div className="absolute inset-[-15%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.45),transparent_60%)] blur-[90px]" />
           <div className="absolute inset-[5%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.28),transparent_55%)] blur-[70px] animate-pulse-glow" />
-          <NeonBlob />
+          <HeroVisual />
         </motion.div>
       </div>
 

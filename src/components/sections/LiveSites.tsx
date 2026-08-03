@@ -1,20 +1,43 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 import { liveSites, type LiveSite } from "@/lib/data";
+
+const card: Variants = {
+  hover: { y: -6, transition: { type: "spring", stiffness: 320, damping: 22 } },
+};
+
+const cardGlow: Variants = {
+  hover: { opacity: 0.45, transition: { duration: 0.35 } },
+};
+
+const cardArrow: Variants = {
+  hover: {
+    x: 3,
+    y: -3,
+    transition: { type: "spring", stiffness: 400, damping: 18 },
+  },
+};
 
 function LiveCard({ site, index }: { site: LiveSite; index: number }) {
   return (
     <Reveal delay={index * 0.1} className="h-full">
-      <a
+      <motion.a
         href={site.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-white/20"
+        variants={card}
+        whileHover="hover"
+        whileFocus="hover"
+        whileTap={{ scale: 0.99 }}
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-7 transition-colors duration-300 hover:border-white/20 focus:outline-none focus-visible:border-white/40"
       >
         {/* accent glow that warms up on hover */}
-        <div
-          className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-40"
+        <motion.div
+          variants={cardGlow}
+          initial={{ opacity: 0.2 }}
+          className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full blur-3xl"
           style={{ background: site.accent }}
         />
 
@@ -68,15 +91,12 @@ function LiveCard({ site, index }: { site: LiveSite; index: number }) {
             }}
           >
             Open
-            <span
-              aria-hidden
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            >
+            <motion.span aria-hidden variants={cardArrow}>
               ↗
-            </span>
+            </motion.span>
           </span>
         </div>
-      </a>
+      </motion.a>
     </Reveal>
   );
 }
