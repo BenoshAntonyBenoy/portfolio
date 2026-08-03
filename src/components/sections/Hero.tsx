@@ -35,7 +35,7 @@ export default function Hero() {
         <div className="absolute -left-20 bottom-1/4 h-72 w-72 rounded-full bg-neon-magenta/10 blur-[120px]" />
       </div>
 
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-6 px-6 pt-24 md:gap-8 md:px-6 md:pt-0">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-6 px-6 pt-24 md:grid-cols-2 md:gap-8 md:pt-0">
         {/* Left — copy. Centred on phones, where a single column reads better
             centred and the left-aligned stack felt cramped. */}
         <motion.div
