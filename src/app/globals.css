@@ -9,6 +9,13 @@
 
 html {
   scroll-behavior: smooth;
+  /* Decorative glows and entrance slides (e.g. the Projects rows starting 40px
+     off to one side) legitimately extend past the viewport. `overflow-x` on body
+     alone does not stop the page scrolling sideways — the root element governs
+     the viewport — which let mobile pan 40px into empty space and pushed the
+     fixed navbar's button out of reach. `clip` blocks it without creating a
+     scroll container, so sticky/anchor behaviour is untouched. */
+  overflow-x: clip;
 }
 
 body {

@@ -35,9 +35,15 @@ export default function Hero() {
         <div className="absolute -left-20 bottom-1/4 h-72 w-72 rounded-full bg-neon-magenta/10 blur-[120px]" />
       </div>
 
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 px-6 pt-28 md:grid-cols-2 md:pt-0">
-        {/* Left — copy */}
-        <motion.div variants={container} initial="hidden" animate="show">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-6 px-6 pt-24 md:gap-8 md:px-6 md:pt-0">
+        {/* Left — copy. Centred on phones, where a single column reads better
+            centred and the left-aligned stack felt cramped. */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="text-center md:text-left"
+        >
           <motion.p
             variants={item}
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-white/70"
@@ -57,7 +63,7 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-6 max-w-md text-lg text-white/60"
+            className="mx-auto mt-5 max-w-md text-base text-white/60 md:mx-0 md:mt-6 md:text-lg"
           >
             <span className="text-white/90">Developer.</span>{" "}
             <span className="text-white/90">Designer.</span>{" "}
@@ -69,7 +75,7 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-9 font-mono text-[11px] uppercase tracking-[0.25em] text-white/35"
+            className="mt-7 font-mono text-[11px] uppercase tracking-[0.25em] text-white/35 md:mt-9"
           >
             My sites
           </motion.p>
@@ -81,7 +87,7 @@ export default function Hero() {
 
           <motion.div
             variants={item}
-            className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm"
+            className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm md:mt-6 md:justify-start"
           >
             <a
               href="#projects"
@@ -100,7 +106,7 @@ export default function Hero() {
 
           <motion.div
             variants={item}
-            className="mt-10 flex items-center gap-6 font-mono text-xs text-white/40"
+            className="mt-7 flex items-center justify-center gap-6 font-mono text-xs text-white/40 md:mt-10 md:justify-start"
           >
             <span>📍 Kerala, India</span>
             <span className="h-3 w-px bg-white/15" />
@@ -113,7 +119,9 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="relative mx-auto aspect-square w-full max-w-md md:max-w-none"
+          // Phones get a much smaller portrait — a full-width square pushed the
+          // portal buttons and the scroll cue far apart.
+          className="relative mx-auto aspect-square w-full max-w-[220px] md:max-w-none"
         >
           {/* Layered ambient glow so the avatar sits in a pool of light. */}
           <div className="absolute inset-[-15%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.45),transparent_60%)] blur-[90px]" />

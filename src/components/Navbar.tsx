@@ -32,7 +32,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <a href="#" className="group flex items-center gap-2 font-mono text-sm">
           <span className="h-2 w-2 rounded-full bg-neon-purple shadow-glow-purple" />
           <span className="font-semibold tracking-tight">
