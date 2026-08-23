@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import PortalButtons from "@/components/ui/PortalButtons";
-// Picks the 3D avatar or a static photo, and owns the client-only dynamic import.
-import HeroVisual from "@/components/three/HeroVisual";
+import HeroPortrait from "@/components/ui/HeroPortrait";
 
 const container = {
   hidden: {},
@@ -25,126 +24,132 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="relative flex min-h-screen flex-col overflow-hidden"
     >
-      {/* Backdrop layers */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-radial-fade blur-2xl" />
-        <div className="absolute -right-20 top-1/4 h-72 w-72 rounded-full bg-neon-cyan/10 blur-[120px]" />
-        <div className="absolute -left-20 bottom-1/4 h-72 w-72 rounded-full bg-neon-magenta/10 blur-[120px]" />
-      </div>
-
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-6 px-6 pt-24 md:grid-cols-2 md:gap-8 md:pt-0">
-        {/* Left — copy. Centred on phones, where a single column reads better
-            centred and the left-aligned stack felt cramped. */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="text-center md:text-left"
-        >
-          <motion.p
-            variants={item}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-white/70"
-          >
-            <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-neon-cyan" />
-            Available for collaborations
-          </motion.p>
-
-          <motion.h1
-            variants={item}
-            className="text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
-          >
-            Benosh
-            <br />
-            <span className="text-gradient-animated">Benoy</span>
-          </motion.h1>
-
-          <motion.p
-            variants={item}
-            className="mx-auto mt-5 max-w-md text-base text-white/60 md:mx-0 md:mt-6 md:text-lg"
-          >
-            <span className="text-white/90">Developer.</span>{" "}
-            <span className="text-white/90">Designer.</span>{" "}
-            <span className="text-white/90">Strategist.</span>
-            <br />
-            Computer Science student. Building things at the intersection of
-            code, AI, and design.
-          </motion.p>
-
-          <motion.p
-            variants={item}
-            className="mt-7 font-mono text-[11px] uppercase tracking-[0.25em] text-white/35 md:mt-9"
-          >
-            My sites
-          </motion.p>
-
-          {/* PortalButtons owns its own entrance stagger, so no variant wrapper. */}
-          <div className="mt-3">
-            <PortalButtons />
-          </div>
-
+      <div className="flex flex-1 items-center">
+        {/* Weighted toward the copy. The 3D canvas used to want all the room it
+            could get; a photograph caps at 19rem, so the slack goes to the text
+            — which also stops the portal tiles squeezing their domain labels
+            into an ellipsis between md and lg. */}
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 px-6 pb-16 pt-28 md:grid-cols-[1.3fr_0.7fr] md:gap-12 md:pb-20 md:pt-24">
+          {/* Left — copy. Centred on phones, where a single column reads better
+              centred and the left-aligned stack felt cramped. */}
           <motion.div
-            variants={item}
-            className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm md:mt-6 md:justify-start"
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="text-center md:text-left"
           >
-            <a
-              href="#projects"
-              className="font-semibold text-white/70 transition-colors hover:text-white"
+            <motion.p
+              variants={item}
+              className="label flex items-center justify-center gap-2.5 text-bone-mute md:justify-start"
             >
-              Or scroll my work ↓
-            </a>
-            <span className="hidden h-3 w-px bg-white/15 sm:block" />
-            <a
-              href="#contact"
-              className="text-white/50 transition-colors hover:text-neon-cyan"
+              <span className="h-1 w-1 animate-pulse rounded-full bg-lichen" />
+              Available for collaborations
+            </motion.p>
+
+            {/* One weight, two styles. The italic surname is the whole
+                typographic idea — it does the job the old animated gradient
+                was doing, without the shimmer. */}
+            <motion.h1
+              variants={item}
+              className="mt-7 font-display text-[3.5rem] leading-[0.92] tracking-[-0.02em] sm:text-7xl lg:text-[5.5rem]"
             >
-              Get in touch
-            </a>
+              Benosh
+              <br />
+              <span className="italic text-lichen">Benoy</span>
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="mx-auto mt-7 max-w-md text-[0.975rem] leading-relaxed text-bone-dim md:mx-0"
+            >
+              <span className="text-bone">
+                Developer. Designer. Strategist.
+              </span>
+              <br />
+              Computer Science student. Building things at the intersection of
+              code, AI, and design.
+            </motion.p>
+
+            <motion.p
+              variants={item}
+              className="label mt-10 text-bone-mute"
+            >
+              My sites
+            </motion.p>
+
+            {/* PortalButtons owns its own entrance stagger, so no variant wrapper. */}
+            <div className="mt-4">
+              <PortalButtons />
+            </div>
+
+            <motion.div
+              variants={item}
+              className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm md:justify-start"
+            >
+              <a
+                href="#projects"
+                className="border-b border-line-strong pb-0.5 text-bone transition-colors hover:border-lichen hover:text-lichen"
+              >
+                Scroll my work
+              </a>
+              <a
+                href="#contact"
+                className="text-bone-dim transition-colors hover:text-bone"
+              >
+                Get in touch
+              </a>
+            </motion.div>
           </motion.div>
 
+          {/* Right — the portrait. The bottom fade mask that used to live here
+              is gone with the avatar: it existed only to hide where the 3D
+              model's torso was cut off, and it ate the framed photo's border. */}
           <motion.div
-            variants={item}
-            className="mt-7 flex items-center justify-center gap-6 font-mono text-xs text-white/40 md:mt-10 md:justify-start"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            // Taller than square: the arch and the standing figure both want
+            // vertical room, and a square slot squashed the arch into a dome.
+            // Phones get a much smaller portrait — a full-width one pushed the
+            // portal buttons and the scroll cue far apart.
+            // min-w-0 so the portrait's own width can't inflate this grid track
+            // and steal room from the copy — that squeezed the portal tiles
+            // until their domain labels ellipsised.
+            className="relative mx-auto aspect-[4/5] w-full min-w-0 max-w-[190px] md:max-w-[21rem]"
           >
-            <span>📍 Kerala, India</span>
-            <span className="h-3 w-px bg-white/15" />
-            <span>MBCET</span>
+            <HeroPortrait />
           </motion.div>
-        </motion.div>
-
-        {/* Right — 3D me, watching the cursor */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          // Phones get a much smaller portrait — a full-width square pushed the
-          // portal buttons and the scroll cue far apart.
-          className="relative mx-auto aspect-square w-full max-w-[220px] md:max-w-none"
-        >
-          {/* Layered ambient glow so the avatar sits in a pool of light. */}
-          <div className="absolute inset-[-15%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.45),transparent_60%)] blur-[90px]" />
-          <div className="absolute inset-[5%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.28),transparent_55%)] blur-[70px] animate-pulse-glow" />
-          <HeroVisual />
-        </motion.div>
+        </div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.a
-        href="#about"
+      {/* Bottom rail — the metadata gets a real structural home instead of
+          floating loose under the copy. */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/40 transition-colors hover:text-white/80"
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="border-t border-line"
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
-          Scroll
-        </span>
-        <span className="flex h-9 w-5 justify-center rounded-full border border-white/20 pt-1.5">
-          <span className="h-1.5 w-1 animate-scroll-cue rounded-full bg-neon-cyan" />
-        </span>
-      </motion.a>
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
+          <div className="label flex items-center gap-4 text-bone-mute sm:gap-7">
+            <span>Kerala, India</span>
+            <span className="hidden h-2.5 w-px bg-line-strong sm:block" />
+            <span className="hidden sm:block">MBCET</span>
+          </div>
+
+          <a
+            href="#about"
+            className="label group flex items-center gap-3 text-bone-mute transition-colors hover:text-bone"
+          >
+            Scroll
+            <span className="flex h-7 w-4 justify-center border border-line-strong pt-1 transition-colors group-hover:border-lichen">
+              <span className="h-1 w-px animate-scroll-cue bg-lichen" />
+            </span>
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 }

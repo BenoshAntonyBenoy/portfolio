@@ -1,71 +1,76 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Reveal from "@/components/ui/Reveal";
-import { skills } from "@/lib/data";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { skills, skillGroups } from "@/lib/data";
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
+  show: { transition: { staggerChildren: 0.05 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  hidden: { opacity: 0, y: 14 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative mx-auto max-w-6xl px-6 py-28">
-      {/* faint constellation lines */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.06),transparent_60%)]" />
+    <section
+      id="skills"
+      className="relative mx-auto max-w-6xl px-6 py-24 md:py-32"
+    >
+      <SectionHeading
+        index="04"
+        label="Toolkit"
+        title={
+          <>
+            Skills &amp; <span className="italic text-lichen">tools</span>
+          </>
+        }
+        lede="Grouped by what they're for, rather than scattered across a grid of tiles."
+      />
 
-      <Reveal>
-        <p className="mb-3 font-mono text-sm text-neon-cyan">
-          {"// the toolkit"}
-        </p>
-        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Skills &amp; <span className="text-gradient">tools</span>
-        </h2>
-        <p className="mt-4 max-w-lg text-white/50">
-          A constellation of the things I build with — hover to light them up.
-        </p>
-      </Reveal>
-
+      {/* Grouped columns of hairline-separated rows. The old version was eight
+          identical cards that each bloomed a different colour on hover — the
+          colour was carrying no information, so it's gone. */}
       <motion.div
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
-        className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+        className="mt-16 grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {skills.map((skill) => {
-          const Icon = skill.icon;
-          return (
-            <motion.div
-              key={skill.name}
-              variants={item}
-              whileHover={{ y: -6 }}
-              className="group relative flex flex-col items-center gap-4 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-colors duration-300 hover:border-white/20"
-              style={{ ["--accent" as string]: skill.color }}
-            >
-              {/* glow that blooms on hover */}
-              <div
-                className="absolute inset-0 -z-10 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-30"
-                style={{ background: skill.color }}
-              />
-              <Icon className="skill-icon text-4xl" />
-              <span className="text-sm font-medium text-white/60 transition-colors group-hover:text-white">
-                {skill.name}
-              </span>
-            </motion.div>
-          );
-        })}
+        {skillGroups.map((group) => (
+          <div key={group}>
+            <p className="label border-b border-line pb-3 text-bone-mute">
+              {group}
+            </p>
+            <ul>
+              {skills
+                .filter((s) => s.group === group)
+                .map((skill) => {
+                  const Icon = skill.icon;
+                  return (
+                    <motion.li
+                      key={skill.name}
+                      variants={item}
+                      className="group flex items-center gap-4 border-b border-line py-4"
+                    >
+                      <Icon className="shrink-0 text-lg text-bone-mute transition-colors duration-300 group-hover:text-lichen" />
+                      <span className="text-[0.95rem] text-bone-dim transition-colors duration-300 group-hover:text-bone">
+                        {skill.name}
+                      </span>
+                    </motion.li>
+                  );
+                })}
+            </ul>
+          </div>
+        ))}
       </motion.div>
     </section>
   );

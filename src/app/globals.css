@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0f;
-  --foreground: #e8e8f0;
+  --background: #0b0e0c;
+  --foreground: #e8e6df;
+  --accent: #9db668;
+  --line: rgba(232, 230, 223, 0.11);
+  --line-strong: rgba(232, 230, 223, 0.22);
 }
 
 html {
   scroll-behavior: smooth;
-  /* Decorative glows and entrance slides (e.g. the Projects rows starting 40px
+  /* Decorative bleeds and entrance slides (e.g. the Projects rows starting 40px
      off to one side) legitimately extend past the viewport. `overflow-x` on body
      alone does not stop the page scrolling sideways — the root element governs
      the viewport — which let mobile pan 40px into empty space and pushed the
@@ -21,25 +24,40 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
-/* Custom neon scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#a855f7, #22d3ee);
-  border-radius: 8px;
+  background: rgba(232, 230, 223, 0.14);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 230, 223, 0.24);
 }
 
+/* Accent at low alpha behind unchanged foreground text — a tinted highlighter
+   rather than a colour swap, so selected text stays as readable as unselected. */
 ::selection {
-  background: rgba(168, 85, 247, 0.35);
-  color: #fff;
+  background: rgba(157, 182, 104, 0.28);
+}
+
+@layer base {
+  /* Instrument Serif ships one weight. Any `font-bold` on it would be a
+     browser-synthesised fake bold, so display type earns emphasis from size
+     and space instead. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
 }
 
 @layer utilities {
@@ -47,54 +65,74 @@ body {
     text-wrap: balance;
   }
 
-  /* Gradient text — purple → cyan */
-  .text-gradient {
-    background: linear-gradient(90deg, #a855f7, #22d3ee, #a855f7);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+  /* The one card surface. Solid, with a real hairline — no backdrop blur, no
+     translucent white film. */
+  .surface {
+    background: #121714;
+    border: 1px solid var(--line);
+  }
+  .surface-hover {
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease;
+  }
+  .surface-hover:hover {
+    background: #191f1b;
+    border-color: var(--line-strong);
   }
 
-  .text-gradient-animated {
-    background: linear-gradient(90deg, #a855f7, #22d3ee, #ec4899, #a855f7);
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: shimmer 6s linear infinite;
+  /* Small mono caps used for section numbers, tags and metadata. */
+  .label,
+  .label-tight {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+  .label {
+    letter-spacing: 0.18em;
+  }
+  /* Same style at conversational width. 0.18em is right for a two-word section
+     kicker and far too wide for a full domain or a copyright line — those broke
+     mid-phrase in the footer and overran the portal tiles. Spelled out as its
+     own class rather than a `tracking-*` override, because both land in the
+     same utilities layer and which one wins is down to declaration order. */
+  .label-tight {
+    letter-spacing: 0.08em;
   }
 
-  /* Glassmorphism card surface */
-  .glass {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Stock photograph as grain, not as subject.
+     ::before carries the image and the filter; ::after tints it. They have to
+     be separate boxes because `filter` applies to an element's own pseudo
+     children too — one combined layer would grey out the tint along with the
+     photo. `isolation` keeps the blend from reaching the page behind it. */
+  .code-texture {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    isolation: isolate;
   }
-
-  /* Thin neon-glow border on hover targets */
-  .glow-border {
-    box-shadow:
-      inset 0 0 0 1px rgba(168, 85, 247, 0.25),
-      0 0 24px -8px rgba(168, 85, 247, 0.45);
+  .code-texture::before,
+  .code-texture::after {
+    content: "";
+    position: absolute;
+    inset: 0;
   }
-}
-
-/* Skill tile icon — neutral by default, lights up in its brand color on hover */
-.skill-icon {
-  color: rgba(255, 255, 255, 0.7);
-  transition:
-    color 0.3s ease,
-    filter 0.3s ease,
-    transform 0.3s ease;
-}
-.group:hover .skill-icon {
-  color: var(--accent);
-  filter: drop-shadow(0 0 12px var(--accent));
-  transform: scale(1.12);
+  .code-texture::before {
+    background: url("/texture/code.webp") center / cover no-repeat;
+    /* The source is a shallow-depth-of-field shot, so its top-left corner is
+       still sharp enough to read as code. A little blur on top of the crush
+       takes it the rest of the way to texture. */
+    filter: grayscale(1) brightness(0.34) contrast(1.3) blur(2px);
+    /* Blur samples transparent pixels past the edge and feathers the border;
+       oversizing the layer keeps that outside the visible box. */
+    inset: -8px;
+  }
+  .code-texture::after {
+    background: var(--accent);
+    mix-blend-mode: color;
+    opacity: 0.6;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

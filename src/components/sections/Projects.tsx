@@ -3,79 +3,43 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { projects, type Project } from "@/lib/data";
 
-function ProjectMockup({ project }: { project: Project }) {
-  // If a real screenshot is provided (and loads), show it inside the window
-  // frame; otherwise fall back to the stylized gradient placeholder.
+function ProjectShot({ project }: { project: Project }) {
+  // If a real screenshot is provided (and loads), show it in a plain frame;
+  // otherwise fall back to the typographic plate.
   const [imgFailed, setImgFailed] = useState(false);
-  const showImage = Boolean(project.image) && !imgFailed;
+  if (!project.image || imgFailed) return null;
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10">
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(circle at 30% 20%, ${project.accent}55, transparent 55%), radial-gradient(circle at 80% 80%, #22d3ee33, transparent 50%), #0d0d14`,
-        }}
+    <div className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-ink-raised">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={project.image}
+        alt={`${project.title} preview`}
+        onError={() => setImgFailed(true)}
+        className="absolute inset-0 h-full w-full object-cover"
       />
-
-      {showImage ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={project.image}
-          alt={`${project.title} preview`}
-          onError={() => setImgFailed(true)}
-          className="absolute inset-0 h-full w-full rounded-2xl object-cover"
-        />
-      ) : (
-        <>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-mono text-sm text-white/30">
-              {project.title} — preview
-            </span>
-          </div>
-          <div className="absolute inset-0 bg-grid-faint [background-size:32px_32px] opacity-40" />
-        </>
-      )}
-
-      {/* fake browser chrome — kept on top so it frames the screenshot too */}
-      <div className="absolute left-4 top-4 flex gap-2">
-        <span className="h-3 w-3 rounded-full bg-white/20" />
-        <span className="h-3 w-3 rounded-full bg-white/20" />
-        <span className="h-3 w-3 rounded-full bg-white/20" />
-      </div>
     </div>
   );
 }
 
-function ProjectVisual({ project, index }: { project: Project; index: number }) {
-  // For projects without a screenshot — a big outlined number anchors the side,
-  // wrapped in the same framed/grid/glow treatment as the preview window so the
-  // layout rhythm stays consistent.
+function ProjectPlate({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  // For projects without a screenshot. Previously a neon-stroked numeral over a
+  // coloured radial glow; now the numeral just is the composition.
   return (
-    <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10">
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(circle at 50% 50%, ${project.accent}22, transparent 70%), #0d0d14`,
-        }}
-      />
-      <div className="absolute inset-0 bg-grid-faint [background-size:40px_40px] opacity-25" />
-      <div
-        className="absolute h-40 w-40 rounded-full opacity-30 blur-3xl"
-        style={{ background: project.accent }}
-      />
-      <span
-        className="relative select-none font-mono text-[8rem] font-bold leading-none sm:text-[11rem]"
-        style={{
-          color: "transparent",
-          WebkitTextStroke: `1.5px ${project.accent}99`,
-        }}
-      >
-        0{index + 1}
+    <div className="surface relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden">
+      <span className="select-none font-display text-[9rem] leading-none text-bone/[0.07] sm:text-[12rem]">
+        {String(index + 1).padStart(2, "0")}
       </span>
-      <span className="absolute bottom-5 left-6 font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+      <span className="label absolute bottom-5 left-5 text-bone-mute">
         {project.tag}
       </span>
     </div>
@@ -85,79 +49,63 @@ function ProjectVisual({ project, index }: { project: Project; index: number }) 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const reversed = index % 2 === 1;
-  const hasWindow = index === 0;
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["12%", "-12%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
 
   return (
     <div
       ref={ref}
-      className="grid grid-cols-1 items-center gap-10 py-16 md:min-h-[80vh] md:grid-cols-2 md:gap-16"
+      className="grid grid-cols-1 items-center gap-8 border-b border-line py-14 md:grid-cols-2 md:gap-16 md:py-20"
     >
-      {/* Visual side — preview window for project 01, stylized number otherwise */}
+      {/* Visual side */}
       <motion.div
         style={{ y }}
-        initial={{ opacity: 0, x: reversed ? 40 : -40 }}
+        initial={{ opacity: 0, x: reversed ? 32 : -32 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`relative ${reversed ? "md:order-2" : "md:order-1"}`}
+        className={reversed ? "md:order-2" : "md:order-1"}
       >
-        <div
-          className="absolute -inset-6 -z-10 rounded-3xl opacity-40 blur-3xl"
-          style={{ background: project.accent }}
-        />
-        {hasWindow ? (
-          <ProjectMockup project={project} />
+        {project.image ? (
+          <ProjectShot project={project} />
         ) : (
-          <ProjectVisual project={project} index={index} />
+          <ProjectPlate project={project} index={index} />
         )}
       </motion.div>
 
       {/* Copy */}
       <div className={reversed ? "md:order-1" : "md:order-2"}>
         <Reveal>
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-5xl font-bold text-white/10">
-              0{index + 1}
+          <div className="label flex items-center gap-3 text-bone-mute">
+            <span className="text-lichen">
+              {String(index + 1).padStart(2, "0")}
             </span>
-            <span
-              className="rounded-full border px-3 py-1 text-xs font-medium"
-              style={{
-                color: project.accent,
-                borderColor: `${project.accent}55`,
-                background: `${project.accent}11`,
-              }}
-            >
-              {project.tag}
-            </span>
+            <span className="h-2.5 w-px bg-line-strong" />
+            {project.tag}
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <h3 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h3 className="mt-5 max-w-md text-balance font-display text-3xl leading-[1.1] sm:text-[2.5rem]">
             {project.title}
           </h3>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-4 max-w-md leading-relaxed text-white/55">
+          <p className="mt-5 max-w-md leading-relaxed text-bone-mute">
             {project.description}
           </p>
         </Reveal>
         <Reveal delay={0.3}>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2">
             {project.tech.map((t) => (
-              <span
-                key={t}
-                className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-white/60"
-              >
+              <li key={t} className="label text-bone-dim">
                 {t}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </Reveal>
       </div>
     </div>
@@ -166,15 +114,19 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-6 py-28">
-      <Reveal>
-        <p className="mb-3 font-mono text-sm text-neon-cyan">
-          {"// selected work"}
-        </p>
-        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Featured <span className="text-gradient">projects</span>
-        </h2>
-      </Reveal>
+    <section
+      id="projects"
+      className="relative mx-auto max-w-6xl px-6 py-24 md:py-32"
+    >
+      <SectionHeading
+        index="02"
+        label="Selected work"
+        title={
+          <>
+            Featured <span className="italic text-lichen">projects</span>
+          </>
+        }
+      />
 
       <div className="mt-8">
         {projects.map((project, i) => (

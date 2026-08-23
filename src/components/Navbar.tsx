@@ -26,18 +26,16 @@ export default function Navbar() {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-b border-white/5 bg-ink/70 backdrop-blur-xl"
-          : "bg-transparent"
+          ? "border-b border-line bg-ink/85 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <a href="#" className="group flex items-center gap-2 font-mono text-sm">
-          <span className="h-2 w-2 rounded-full bg-neon-purple shadow-glow-purple" />
-          <span className="font-semibold tracking-tight">
-            benosh<span className="text-neon-cyan">.dev</span>
-          </span>
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        {/* Was "benosh.dev" — the site has always been served from benosh.tech. */}
+        <a href="#" className="label text-bone">
+          benosh<span className="text-lichen">.tech</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -45,7 +43,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="relative text-sm text-white/60 transition-colors hover:text-white"
+                className="text-sm text-bone-dim transition-colors hover:text-bone"
               >
                 {l.label}
               </a>
@@ -55,7 +53,7 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="rounded-full border border-neon-purple/40 bg-neon-purple/10 px-4 py-1.5 text-sm font-medium text-white transition-all hover:bg-neon-purple/20 hover:shadow-glow-purple"
+          className="border border-line-strong px-4 py-1.5 text-sm text-bone transition-colors hover:border-lichen hover:text-lichen"
         >
           Let&apos;s talk
         </a>

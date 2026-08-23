@@ -1,55 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
-import CountUp from "@/components/ui/CountUp";
+import SectionHeading from "@/components/ui/SectionHeading";
 
-const stats = [
-  { to: 100, suffix: "+", label: "UI designs crafted" },
+/**
+ * These replaced a row of animated count-up "stat cards". Two of the three
+ * counters were counting to 1, which is why they'd been swapped for emoji to
+ * hide it — a fake metric is worse than a plain sentence. Same claims, stated
+ * rather than animated.
+ */
+const facts = [
+  { kicker: "Design", body: "100+ UI designs crafted." },
   {
-    to: 1,
-    suffix: "",
-    label: "ML Models Trained",
-    sub: "Regression models across multiple projects",
-    display: "📊",
+    kicker: "Machine Learning",
+    body: "Regression models trained across multiple projects.",
   },
-  { to: 1, suffix: "", label: "Hackathon participant", display: "⚡" },
+  {
+    kicker: "Building",
+    body: "Multiple hackathons — prototypes shipped under deadline.",
+  },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="relative mx-auto max-w-6xl px-6 py-28">
-      <Reveal>
-        <p className="mb-3 font-mono text-sm text-neon-cyan">{"// about me"}</p>
-        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Who&apos;s behind the <span className="text-gradient">pixels</span>?
-        </h2>
-      </Reveal>
+    <section id="about" className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <SectionHeading
+        index="01"
+        label="About"
+        title={
+          <>
+            Who&apos;s behind the <span className="italic text-lichen">work</span>?
+          </>
+        }
+      />
 
-      <div className="mt-14 grid grid-cols-1 items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
-        {/* Photo placeholder with neon ring */}
+      <div className="mt-16 grid grid-cols-1 items-start gap-10 md:grid-cols-[0.75fr_1.25fr] md:gap-14">
+        {/* Portrait. A framed rectangle rather than a circle in a glowing conic
+            ring — the ring was doing decoration, the frame does composition. */}
         <Reveal>
-          <div className="relative mx-auto aspect-square w-64 sm:w-80">
-            <div className="absolute inset-0 animate-pulse-glow rounded-full bg-[conic-gradient(from_0deg,#a855f7,#22d3ee,#ec4899,#a855f7)] blur-md" />
-            {/* Themed backdrop so any breathing room reads as an intentional vignette */}
-            <div className="absolute inset-[3px] rounded-full bg-[radial-gradient(circle_at_50%_35%,#1a1230,#0a0a0f)]" />
-            {/* Photo. `cover` fills the whole circle (cropping top/bottom as
-                needed); backgroundPosition keeps the face roughly centered. */}
+          <div className="relative mx-auto aspect-[4/5] w-56 border border-line sm:w-full sm:max-w-xs">
             <div
               role="img"
               aria-label="Benosh Benoy"
-              className="absolute inset-[3px] rounded-full bg-no-repeat"
+              className="absolute inset-0 bg-no-repeat"
               style={{
                 backgroundImage: "url(/me.png)",
                 backgroundSize: "cover",
-                backgroundPosition: "center 30%",
+                backgroundPosition: "center 25%",
               }}
-            />
-            {/* floating accent dot */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-2 top-8 h-4 w-4 rounded-full bg-neon-cyan shadow-glow-cyan"
             />
           </div>
         </Reveal>
@@ -57,47 +55,38 @@ export default function About() {
         {/* Bio */}
         <div>
           <Reveal delay={0.1}>
-            <p className="text-lg leading-relaxed text-white/70">
-              I&apos;m{" "}
-              <span className="font-semibold text-white">Benosh Benoy</span>, a
+            <p className="text-lg leading-relaxed text-bone-dim">
+              I&apos;m <span className="text-bone">Benosh Benoy</span>, a
               Computer Science student building at the intersection of code,
               design, and AI, currently studying at{" "}
-              <span className="text-neon-purple">
+              <span className="text-bone">
                 Mar Baselios College of Engineering and Technology
               </span>
               .
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-5 leading-relaxed text-white/50">
+            <p className="mt-6 leading-relaxed text-bone-mute">
               I live where engineering meets aesthetics — writing code that
               works and interfaces that feel right. From Python tools to AI
               experiments to UI case studies, I care about the craft end to end,
               and I think about products strategically, not just visually.
             </p>
           </Reveal>
-        </div>
-      </div>
 
-      {/* Stat cards */}
-      <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        {stats.map((s, i) => (
-          <Reveal key={s.label} delay={i * 0.12}>
-            <div className="glass group h-full rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-soft">
-              <div className="text-4xl font-bold text-gradient sm:text-5xl">
-                {s.display ? (
-                  s.display
-                ) : (
-                  <CountUp to={s.to} suffix={s.suffix} />
-                )}
-              </div>
-              <p className="mt-3 text-sm text-white/50">{s.label}</p>
-              {s.sub && (
-                <p className="mt-1 text-xs text-white/30">{s.sub}</p>
-              )}
-            </div>
-          </Reveal>
-        ))}
+          <div className="mt-12 grid grid-cols-1 border-t border-line sm:grid-cols-3">
+            {facts.map((f, i) => (
+              <Reveal key={f.kicker} delay={i * 0.1}>
+                <div className="h-full border-b border-line py-6 pr-6 sm:border-b-0 sm:border-l sm:py-0 sm:pl-6 sm:pt-6 sm:first:border-l-0 sm:first:pl-0">
+                  <p className="label text-lichen">{f.kicker}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-bone-dim">
+                    {f.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

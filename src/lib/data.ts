@@ -8,30 +8,39 @@ import {
 } from "react-icons/fa6";
 import { IconType } from "react-icons";
 
+/**
+ * No per-item accent colours anywhere in here any more. Cards used to each
+ * carry their own hex, which is why the page read as a swatch sampler; they now
+ * differentiate by number, label and type instead, and every colour comes from
+ * the single palette in tailwind.config.ts.
+ */
+
 export type Skill = {
   name: string;
   icon: IconType;
-  color: string;
+  /** Grouping shown as a mono label above each cluster. */
+  group: "Languages" | "Data & AI" | "Design";
 };
 
 export const skills: Skill[] = [
-  { name: "Python", icon: SiPython, color: "#3776AB" },
-  { name: "C", icon: SiC, color: "#A8B9CC" },
-  { name: "SQL", icon: FaDatabase, color: "#22d3ee" },
-  { name: "Figma", icon: SiFigma, color: "#F24E1E" },
-  { name: "UI Design", icon: FaPenNib, color: "#a855f7" },
-  { name: "AI / ML", icon: FaBrain, color: "#ec4899" },
-  { name: "Video Editing", icon: FaVideo, color: "#9999FF" },
-  { name: "Stock Analysis", icon: FaChartLine, color: "#22d3ee" },
+  { name: "Python", icon: SiPython, group: "Languages" },
+  { name: "C", icon: SiC, group: "Languages" },
+  { name: "SQL", icon: FaDatabase, group: "Data & AI" },
+  { name: "AI / ML", icon: FaBrain, group: "Data & AI" },
+  { name: "Stock Analysis", icon: FaChartLine, group: "Data & AI" },
+  { name: "Figma", icon: SiFigma, group: "Design" },
+  { name: "UI Design", icon: FaPenNib, group: "Design" },
+  { name: "Video Editing", icon: FaVideo, group: "Design" },
 ];
+
+export const skillGroups = ["Languages", "Data & AI", "Design"] as const;
 
 export type Project = {
   title: string;
   tag: string;
   description: string;
   tech: string[];
-  accent: string; // hex used for the placeholder mockup gradient
-  image?: string; // optional real screenshot; falls back to the stylized placeholder
+  image?: string; // optional real screenshot; falls back to a typographic plate
 };
 
 export const projects: Project[] = [
@@ -41,7 +50,6 @@ export const projects: Project[] = [
     description:
       "A desktop tool that ingests student marksheets and turns them into clear, actionable performance insights — trends, weak areas, and printable summaries through a clean GUI.",
     tech: ["Python", "Tkinter", "Pandas", "Matplotlib"],
-    accent: "#a855f7",
     image: "/projects/student-report.png",
   },
   {
@@ -50,7 +58,6 @@ export const projects: Project[] = [
     description:
       "An inventory and sales management system for a game store: stock tracking, billing, and customer records backed by a structured database layer.",
     tech: ["Python", "SQLite", "OOP"],
-    accent: "#22d3ee",
   },
   {
     title: "Personal Budget Tracker",
@@ -58,7 +65,6 @@ export const projects: Project[] = [
     description:
       "A friendly budgeting app to log expenses, set category limits, and visualise where the money actually goes — with charts that make overspending obvious.",
     tech: ["Python", "Tkinter", "Matplotlib"],
-    accent: "#ec4899",
   },
   {
     title: "Google Pay Mobile App Redesign",
@@ -66,7 +72,6 @@ export const projects: Project[] = [
     description:
       "An end-to-end UX case study reimagining the Google Pay flow — research, wireframes, and a polished high-fidelity prototype focused on clarity and trust.",
     tech: ["Figma", "Prototyping", "UX Research"],
-    accent: "#22d3ee",
   },
   {
     title: "ML Regression Models",
@@ -74,7 +79,6 @@ export const projects: Project[] = [
     description:
       "A series of regression experiments predicting numerical outcomes across small datasets — exploring feature engineering, model selection, and evaluation metrics in practice.",
     tech: ["Python", "scikit-learn", "Pandas", "NumPy"],
-    accent: "#a855f7",
   },
 ];
 
@@ -85,7 +89,6 @@ export type LiveSite = {
   href: string;
   description: string;
   tech: string[];
-  accent: string;
 };
 
 // Things that are actually deployed and clickable — each opens in a new tab.
@@ -98,7 +101,6 @@ export const liveSites: LiveSite[] = [
     description:
       "A second take on my portfolio — an editorial, arena-style layout with the same work presented in a very different visual language.",
     tech: ["React", "Vite", "TypeScript", "Tailwind"],
-    accent: "#a855f7",
   },
   {
     title: "BQuick",
@@ -108,15 +110,14 @@ export const liveSites: LiveSite[] = [
     description:
       "A typing trainer that measures the rhythm between your keystrokes, finds your weakest key-to-key transitions, and drills them with real words until they smooth out.",
     tech: ["JavaScript", "Web Audio", "localStorage"],
-    accent: "#22d3ee",
   },
 ];
 
 export type Achievement = {
   title: string;
   detail: string;
-  icon: string; // emoji
-  accent: string;
+  /** Short mono kicker in place of the old emoji tile. */
+  kicker: string;
 };
 
 export const achievements: Achievement[] = [
@@ -124,34 +125,30 @@ export const achievements: Achievement[] = [
     title: "Chess — 1st Place",
     detail:
       "Champion of the MBCET inter-college chess tournament. Calculated, patient, decisive.",
-    icon: "♛",
-    accent: "#a855f7",
+    kicker: "Tournament",
   },
   {
     title: "Chess — 3rd Place",
     detail:
       "Represented MBCET at inter-college level — podium finish against strong opposition from other colleges.",
-    icon: "♞",
-    accent: "#22d3ee",
+    kicker: "Tournament",
   },
   {
     title: "Multiple Hackathons",
     detail:
       "Shipped ideas fast under pressure across multiple hackathons — quick prototyping, tight deadlines, real teamwork.",
-    icon: "⚡",
-    accent: "#ec4899",
+    kicker: "Building",
   },
   {
     title: "Stock Market — 2+ Years",
-    detail: "Two years studying markets, risk, and long-term strategic thinking.",
-    icon: "📈",
-    accent: "#22d3ee",
+    detail:
+      "Two years studying markets, risk, and long-term strategic thinking.",
+    kicker: "Markets",
   },
   {
     title: "Continuous AI Learning",
     detail: "Always taking courses and experimenting at the frontier of AI.",
-    icon: "🧠",
-    accent: "#a855f7",
+    kicker: "Learning",
   },
 ];
 

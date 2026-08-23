@@ -3,30 +3,31 @@ import { liveSites } from "@/lib/data";
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-white/5 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-white/40 sm:flex-row">
-        <p className="font-mono">
-          © {year} Benosh Benoy. All rights reserved.
+    <footer className="border-t border-line py-10">
+      {/* Tracking is dialled back from the shared .label value and every item is
+          nowrap — at 0.18em the four items broke mid-phrase ("© 2026 BENOSH /
+          BENOY") instead of wrapping as units. */}
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 sm:justify-between">
+        <p className="label-tight whitespace-nowrap text-bone-mute">
+          © {year} Benosh Benoy
         </p>
-        <nav className="flex items-center gap-5 font-mono text-xs">
+
+        <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
           {liveSites.map((site) => (
             <a
               key={site.href}
               href={site.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-white/80"
+              className="label-tight whitespace-nowrap text-bone-mute transition-colors hover:text-bone"
             >
               {site.domain} ↗
             </a>
           ))}
         </nav>
-        <p className="flex items-center gap-2">
-          Made with
-          <span className="text-white/70">Next.js</span>+
-          <span className="text-white/70">Three.js</span>
-          <span className="ml-1 h-1.5 w-1.5 animate-pulse-glow rounded-full bg-neon-cyan" />
-        </p>
+
+        {/* Was "Next.js + Three.js" — there's no Three.js left in the bundle. */}
+        <p className="label-tight whitespace-nowrap text-bone-mute">Next.js</p>
       </div>
     </footer>
   );

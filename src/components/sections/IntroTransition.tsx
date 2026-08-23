@@ -3,6 +3,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+/**
+ * The one photographic moment on the page.
+ *
+ * `/texture/code.webp` is a stock shot (Pexels, by Nemuel Sereti) and a very
+ * well-worn one — angled monitor, blurred syntax highlighting. Used at full
+ * strength it would read as exactly that. Crushed to near-black, drained of its
+ * own colour, tinted to the accent and masked to nothing at both edges, what
+ * survives is grain and a suggestion of screen glow. It's here to break up a
+ * page that is otherwise flat CSS, and nowhere else.
+ */
 export default function IntroTransition() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -13,35 +23,39 @@ export default function IntroTransition() {
   // Parallax: the two lines drift in opposite directions as you scroll through.
   const y1 = useTransform(scrollYProgress, [0, 1], ["40%", "-40%"]);
   const y2 = useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]);
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0],
-  );
+  // The plate drifts slower than either line, which is what sells the depth.
+  const yPlate = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
     <section
       ref={ref}
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.08),transparent_70%)]" />
+      <motion.div
+        style={{ y: yPlate }}
+        aria-hidden
+        className="pointer-events-none absolute inset-[-10%] -z-10 opacity-40 [mask-image:linear-gradient(to_bottom,transparent,black_28%,black_72%,transparent)]"
+      >
+        <div className="code-texture" />
+      </motion.div>
 
       <motion.div style={{ opacity }} className="px-6 text-center">
         <motion.h2
           style={{ y: y1 }}
-          className="text-4xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl"
+          className="font-display text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl"
         >
           I build things that
         </motion.h2>
         <motion.h2
           style={{ y: y2 }}
-          className="text-gradient-animated text-5xl font-bold leading-tight tracking-tight sm:text-7xl lg:text-8xl"
+          className="font-display text-[3.5rem] italic leading-[1.02] text-lichen sm:text-7xl lg:text-8xl"
         >
           think.
         </motion.h2>
         <motion.p
           style={{ y: y2 }}
-          className="mx-auto mt-8 max-w-xl text-base text-white/40 sm:text-lg"
+          className="mx-auto mt-10 max-w-md leading-relaxed text-bone-dim"
         >
           Code as craft. Design as language. Strategy as the thread between them.
         </motion.p>
