@@ -43,21 +43,32 @@ export type Project = {
   image?: string; // optional real screenshot; falls back to a typographic plate
 };
 
+// Screenshots come from portfolio.benosh.tech, which already had optimised webp
+// versions of all five.
 export const projects: Project[] = [
+  {
+    title: "BQuick",
+    tag: "JavaScript app",
+    description:
+      "An adaptive browser typing trainer that measures dwell and flight time for every keystroke, identifies weak key-to-key transitions, and turns them into focused drills.",
+    tech: ["JavaScript", "Browser APIs", "Adaptive Analytics"],
+    image: "/projects/bquick.webp",
+  },
+  {
+    title: "BeMag",
+    tag: "React + TypeScript",
+    description:
+      "A browser arcade — a galaxy-themed front page and four game cabinets, one of them built. Emoji Bounce is a canvas keepy-uppy game where the paddle tracks your cursor and the screen shifts colour as you climb through star thresholds.",
+    tech: ["React", "Vite", "TypeScript", "Canvas"],
+    image: "/projects/bemag.webp",
+  },
   {
     title: "Student Report Analyser",
     tag: "Python + UI",
     description:
       "A desktop tool that ingests student marksheets and turns them into clear, actionable performance insights — trends, weak areas, and printable summaries through a clean GUI.",
     tech: ["Python", "Tkinter", "Pandas", "Matplotlib"],
-    image: "/projects/student-report.png",
-  },
-  {
-    title: "Game Store Management System",
-    tag: "Python",
-    description:
-      "An inventory and sales management system for a game store: stock tracking, billing, and customer records backed by a structured database layer.",
-    tech: ["Python", "SQLite", "OOP"],
+    image: "/projects/student-report.webp",
   },
   {
     title: "Personal Budget Tracker",
@@ -65,6 +76,7 @@ export const projects: Project[] = [
     description:
       "A friendly budgeting app to log expenses, set category limits, and visualise where the money actually goes — with charts that make overspending obvious.",
     tech: ["Python", "Tkinter", "Matplotlib"],
+    image: "/projects/budget-tracker.webp",
   },
   {
     title: "Google Pay Mobile App Redesign",
@@ -72,13 +84,7 @@ export const projects: Project[] = [
     description:
       "An end-to-end UX case study reimagining the Google Pay flow — research, wireframes, and a polished high-fidelity prototype focused on clarity and trust.",
     tech: ["Figma", "Prototyping", "UX Research"],
-  },
-  {
-    title: "ML Regression Models",
-    tag: "Machine Learning",
-    description:
-      "A series of regression experiments predicting numerical outcomes across small datasets — exploring feature engineering, model selection, and evaluation metrics in practice.",
-    tech: ["Python", "scikit-learn", "Pandas", "NumPy"],
+    image: "/projects/gpay-redesign.webp",
   },
 ];
 

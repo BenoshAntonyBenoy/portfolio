@@ -6,20 +6,25 @@ import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { projects, type Project } from "@/lib/data";
 
-function ProjectShot({ project }: { project: Project }) {
-  // If a real screenshot is provided (and loads), show it in a plain frame;
-  // otherwise fall back to the typographic plate.
-  const [imgFailed, setImgFailed] = useState(false);
-  if (!project.image || imgFailed) return null;
-
+function ProjectShot({
+  project,
+  onFail,
+}: {
+  project: Project;
+  onFail: () => void;
+}) {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-ink-raised">
+    // `contain`, not `cover`. These screenshots range from 1.98 (a wide desktop
+    // window) to 0.46 (a portrait phone mockup); cover would crop the sides off
+    // the wide ones and eat most of the phone. Contained and mounted on the
+    // surface, each one shows whole and the plate does the composing.
+    <div className="surface relative aspect-[3/2] w-full overflow-hidden p-3 sm:p-4">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={project.image}
-        alt={`${project.title} preview`}
-        onError={() => setImgFailed(true)}
-        className="absolute inset-0 h-full w-full object-cover"
+        alt={`${project.title} interface`}
+        onError={onFail}
+        className="h-full w-full object-contain"
       />
     </div>
   );
@@ -32,10 +37,11 @@ function ProjectPlate({
   project: Project;
   index: number;
 }) {
-  // For projects without a screenshot. Previously a neon-stroked numeral over a
-  // coloured radial glow; now the numeral just is the composition.
+  // Fallback for a project with no screenshot, or one whose image fails to
+  // load. Previously a neon-stroked numeral over a coloured radial glow; now
+  // the numeral just is the composition.
   return (
-    <div className="surface relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden">
+    <div className="surface relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden">
       <span className="select-none font-display text-[9rem] leading-none text-bone/[0.07] sm:text-[12rem]">
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -49,6 +55,11 @@ function ProjectPlate({
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const reversed = index % 2 === 1;
+  // Lives on the row, not inside ProjectShot: the shot can't render its own
+  // fallback, because a component that returns null on error just leaves an
+  // empty cell where the visual should be.
+  const [shotFailed, setShotFailed] = useState(false);
+  const showShot = Boolean(project.image) && !shotFailed;
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -70,8 +81,8 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={reversed ? "md:order-2" : "md:order-1"}
       >
-        {project.image ? (
-          <ProjectShot project={project} />
+        {showShot ? (
+          <ProjectShot project={project} onFail={() => setShotFailed(true)} />
         ) : (
           <ProjectPlate project={project} index={index} />
         )}
