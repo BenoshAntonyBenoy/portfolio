@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import PortalButtons from "@/components/ui/PortalButtons";
-// Picks the 3D avatar or a static photo, and owns the client-only dynamic import.
 import HeroVisual from "@/components/three/HeroVisual";
 
 const container = {
@@ -123,7 +122,7 @@ export default function Hero() {
           // portal buttons and the scroll cue far apart.
           className="relative mx-auto aspect-square w-full max-w-[220px] md:max-w-none"
         >
-          {/* Layered ambient glow so the avatar sits in a pool of light. */}
+          {/* Layered ambient glow so the blob sits in a pool of light. */}
           <div className="absolute inset-[-15%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.45),transparent_60%)] blur-[90px]" />
           <div className="absolute inset-[5%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.28),transparent_55%)] blur-[70px] animate-pulse-glow" />
           <HeroVisual />

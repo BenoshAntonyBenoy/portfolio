@@ -3,9 +3,13 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-// WebGL + a 1.1MB avatar is desktop-only weight, and there's no cursor to follow
-// on a phone anyway — so the 3D chunk is never even requested below md.
-const AvatarScene = dynamic(() => import("./AvatarScene"), {
+// WebGL is desktop-only weight, and there's no cursor to follow on a phone
+// anyway — so the 3D chunk is never even requested below md.
+//
+// This used to load AvatarScene, which put the Avaturn GLB in front of a small
+// blob backdrop. The avatar is gone; the blob goes back to being the hero
+// centrepiece it was before, which also drops a 1.1MB model download.
+const NeonBlob = dynamic(() => import("./NeonBlob"), {
   ssr: false,
   loading: () => (
     <div className="h-full w-full animate-pulse-glow rounded-full bg-radial-fade" />
@@ -29,7 +33,7 @@ export default function HeroVisual() {
     };
   }, []);
 
-  if (use3D) return <AvatarScene />;
+  if (use3D) return <NeonBlob />;
 
   return (
     <div className="flex h-full w-full items-center justify-center">
