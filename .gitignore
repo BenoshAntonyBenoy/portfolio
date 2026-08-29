@@ -38,3 +38,6 @@ next-env.d.ts
 
 # claude code local settings
 .claude/settings.local.json
+
+# admin panel's pre-publish verification build
+/.next-admin-check/

@@ -1,3 +1,5 @@
+import { content } from "@/lib/content";
+
 /**
  * The hero portrait — a background-removed cutout standing in front of an arch.
  *
@@ -12,6 +14,8 @@
  * default.
  */
 export default function HeroPortrait() {
+  const { src, alt } = content.hero.portrait;
+
   return (
     <div className="relative flex h-full w-full items-end justify-center">
       <div
@@ -26,8 +30,8 @@ export default function HeroPortrait() {
           the img's intrinsic width then inflates the grid track it sits in. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/me-cutout.webp"
-        alt="Benosh Benoy"
+        src={src}
+        alt={alt}
         className="relative h-[95%] w-auto object-contain object-bottom"
       />
     </div>

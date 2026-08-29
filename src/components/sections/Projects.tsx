@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { projects, type Project } from "@/lib/data";
+import { content, type Project } from "@/lib/content";
 
 function ProjectShot({
   project,
@@ -129,18 +129,10 @@ export default function Projects() {
       id="projects"
       className="relative mx-auto max-w-6xl px-6 py-24 md:py-32"
     >
-      <SectionHeading
-        index="02"
-        label="Selected work"
-        title={
-          <>
-            Featured <span className="italic text-lichen">projects</span>
-          </>
-        }
-      />
+      <SectionHeading heading={content.projects.heading} />
 
       <div className="mt-8">
-        {projects.map((project, i) => (
+        {content.projects.items.map((project, i) => (
           <ProjectRow key={project.title} project={project} index={i} />
         ))}
       </div>

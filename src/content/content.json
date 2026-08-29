@@ -1,0 +1,340 @@
+{
+  "site": {
+    "url": "https://www.benosh.tech",
+    "title": "Benosh Benoy — Developer. Designer. Strategist.",
+    "description": "Portfolio of Benosh Benoy — Computer Science student building at the intersection of code, AI, and design. Projects in Python, AI, and UI/UX.",
+    "ogTitle": "Benosh Benoy — Developer. Designer. Strategist.",
+    "ogDescription": "Computer Science student. Code, AI, and UI/UX design.",
+    "twitterDescription": "Computer Science student. Code, AI, and UI/UX design."
+  },
+  "nav": {
+    "brand": "benosh",
+    "brandAccent": ".tech",
+    "links": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Projects",
+        "href": "#projects"
+      },
+      {
+        "label": "Live",
+        "href": "#live"
+      },
+      {
+        "label": "Skills",
+        "href": "#skills"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "cta": {
+      "label": "Let's talk",
+      "href": "#contact"
+    }
+  },
+  "hero": {
+    "availability": "Available for collaborations",
+    "nameLine1": "Benosh",
+    "nameLine2": "Benoy",
+    "tagline": "Developer. Designer. Strategist.",
+    "intro": "Computer Science student. Building things at the intersection of code, AI, and design.",
+    "portalLabel": "My sites",
+    "primaryLink": {
+      "label": "Scroll my work",
+      "href": "#projects"
+    },
+    "secondaryLink": {
+      "label": "Get in touch",
+      "href": "#contact"
+    },
+    "portrait": {
+      "src": "/me-cutout.webp",
+      "alt": "Benosh Benoy"
+    },
+    "rail": {
+      "location": "Kerala, India",
+      "affiliation": "MBCET",
+      "scrollLabel": "Scroll",
+      "scrollHref": "#about"
+    }
+  },
+  "intro": {
+    "line1": "I build things that",
+    "line2": "think.",
+    "body": "Code as craft. Design as language. Strategy as the thread between them.",
+    "texture": "/texture/code.webp"
+  },
+  "about": {
+    "heading": {
+      "index": "01",
+      "label": "About",
+      "title": "Who's behind the *work*?",
+      "lede": ""
+    },
+    "portrait": {
+      "src": "/me.png",
+      "alt": "Benosh Benoy",
+      "position": "center 25%"
+    },
+    "bio": [
+      "I'm **Benosh Benoy**, a Computer Science student building at the intersection of code, design, and AI, currently studying at **Mar Baselios College of Engineering and Technology**.",
+      "I live where engineering meets aesthetics — writing code that works and interfaces that feel right. From Python tools to AI experiments to UI case studies, I care about the craft end to end, and I think about products strategically, not just visually."
+    ],
+    "facts": [
+      {
+        "kicker": "Design",
+        "body": "100+ UI designs crafted."
+      },
+      {
+        "kicker": "Machine Learning",
+        "body": "Regression models trained across multiple projects."
+      },
+      {
+        "kicker": "Building",
+        "body": "Multiple hackathons — prototypes shipped under deadline."
+      }
+    ]
+  },
+  "projects": {
+    "heading": {
+      "index": "02",
+      "label": "Selected work",
+      "title": "Featured *projects*",
+      "lede": ""
+    },
+    "items": [
+      {
+        "title": "BQuick",
+        "tag": "JavaScript app",
+        "description": "An adaptive browser typing trainer that measures dwell and flight time for every keystroke, identifies weak key-to-key transitions, and turns them into focused drills.",
+        "tech": [
+          "JavaScript",
+          "Browser APIs",
+          "Adaptive Analytics"
+        ],
+        "image": "/projects/bquick.webp"
+      },
+      {
+        "title": "BeMag",
+        "tag": "React + TypeScript",
+        "description": "A browser arcade — a galaxy-themed front page and four game cabinets, one of them built. Emoji Bounce is a canvas keepy-uppy game where the paddle tracks your cursor and the screen shifts colour as you climb through star thresholds.",
+        "tech": [
+          "React",
+          "Vite",
+          "TypeScript",
+          "Canvas"
+        ],
+        "image": "/projects/bemag.webp"
+      },
+      {
+        "title": "Student Report Analyser",
+        "tag": "Python + UI",
+        "description": "A desktop tool that ingests student marksheets and turns them into clear, actionable performance insights — trends, weak areas, and printable summaries through a clean GUI.",
+        "tech": [
+          "Python",
+          "Tkinter",
+          "Pandas",
+          "Matplotlib"
+        ],
+        "image": "/projects/student-report.webp"
+      },
+      {
+        "title": "Personal Budget Tracker",
+        "tag": "Python + UI",
+        "description": "A friendly budgeting app to log expenses, set category limits, and visualise where the money actually goes — with charts that make overspending obvious.",
+        "tech": [
+          "Python",
+          "Tkinter",
+          "Matplotlib"
+        ],
+        "image": "/projects/budget-tracker.webp"
+      },
+      {
+        "title": "Google Pay Mobile App Redesign",
+        "tag": "Figma case study",
+        "description": "An end-to-end UX case study reimagining the Google Pay flow — research, wireframes, and a polished high-fidelity prototype focused on clarity and trust.",
+        "tech": [
+          "Figma",
+          "Prototyping",
+          "UX Research"
+        ],
+        "image": "/projects/gpay-redesign.webp"
+      }
+    ]
+  },
+  "liveSites": {
+    "heading": {
+      "index": "03",
+      "label": "Live now",
+      "title": "Try it *yourself*",
+      "lede": "Deployed and running — open either one in a new tab."
+    },
+    "onlineLabel": "Online",
+    "openLabel": "Open",
+    "items": [
+      {
+        "title": "Portfolio",
+        "tag": "Live site",
+        "domain": "portfolio.benosh.tech",
+        "href": "https://portfolio.benosh.tech",
+        "description": "A second take on my portfolio — an editorial, arena-style layout with the same work presented in a very different visual language.",
+        "tech": [
+          "React",
+          "Vite",
+          "TypeScript",
+          "Tailwind"
+        ]
+      },
+      {
+        "title": "BQuick",
+        "tag": "Live app",
+        "domain": "bquick.benosh.tech",
+        "href": "https://bquick.benosh.tech",
+        "description": "A typing trainer that measures the rhythm between your keystrokes, finds your weakest key-to-key transitions, and drills them with real words until they smooth out.",
+        "tech": [
+          "JavaScript",
+          "Web Audio",
+          "localStorage"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "heading": {
+      "index": "04",
+      "label": "Toolkit",
+      "title": "Skills & *tools*",
+      "lede": "Grouped by what they're for, rather than scattered across a grid of tiles."
+    },
+    "groups": [
+      "Languages",
+      "Data & AI",
+      "Design"
+    ],
+    "items": [
+      {
+        "name": "Python",
+        "icon": "SiPython",
+        "group": "Languages"
+      },
+      {
+        "name": "C",
+        "icon": "SiC",
+        "group": "Languages"
+      },
+      {
+        "name": "SQL",
+        "icon": "FaDatabase",
+        "group": "Data & AI"
+      },
+      {
+        "name": "AI / ML",
+        "icon": "FaBrain",
+        "group": "Data & AI"
+      },
+      {
+        "name": "Stock Analysis",
+        "icon": "FaChartLine",
+        "group": "Data & AI"
+      },
+      {
+        "name": "Figma",
+        "icon": "SiFigma",
+        "group": "Design"
+      },
+      {
+        "name": "UI Design",
+        "icon": "FaPenNib",
+        "group": "Design"
+      },
+      {
+        "name": "Video Editing",
+        "icon": "FaVideo",
+        "group": "Design"
+      }
+    ]
+  },
+  "achievements": {
+    "heading": {
+      "index": "05",
+      "label": "Beyond code",
+      "title": "Strategy, on and off the *board*",
+      "lede": "The same thinking I bring to chess and markets shows up in how I build — patient, deliberate, a few moves ahead."
+    },
+    "watermark": "♟",
+    "items": [
+      {
+        "kicker": "Tournament",
+        "title": "Chess — 1st Place",
+        "detail": "Champion of the MBCET inter-college chess tournament. Calculated, patient, decisive."
+      },
+      {
+        "kicker": "Tournament",
+        "title": "Chess — 3rd Place",
+        "detail": "Represented MBCET at inter-college level — podium finish against strong opposition from other colleges."
+      },
+      {
+        "kicker": "Building",
+        "title": "Multiple Hackathons",
+        "detail": "Shipped ideas fast under pressure across multiple hackathons — quick prototyping, tight deadlines, real teamwork."
+      },
+      {
+        "kicker": "Markets",
+        "title": "Stock Market — 2+ Years",
+        "detail": "Two years studying markets, risk, and long-term strategic thinking."
+      },
+      {
+        "kicker": "Learning",
+        "title": "Continuous AI Learning",
+        "detail": "Always taking courses and experimenting at the frontier of AI."
+      }
+    ]
+  },
+  "contact": {
+    "heading": {
+      "index": "06",
+      "label": "Get in touch",
+      "title": "Let's build something *remarkable*",
+      "lede": "Got an idea, a role, or just want to talk shop about AI, design, or chess? My inbox is open."
+    },
+    "resume": {
+      "label": "Download Résumé",
+      "href": "/resume.pdf"
+    },
+    "links": [
+      {
+        "label": "Email",
+        "value": "benosh.benoy2@gmail.com",
+        "href": "mailto:benosh.benoy2@gmail.com",
+        "icon": "HiOutlineMail"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "/in/benoshbenoy",
+        "href": "https://linkedin.com/in/benoshbenoy",
+        "icon": "FaLinkedinIn"
+      },
+      {
+        "label": "GitHub",
+        "value": "@BenoshAntonyBenoy",
+        "href": "https://github.com/BenoshAntonyBenoy",
+        "icon": "FaGithub"
+      },
+      {
+        "label": "Discord",
+        "value": "_benosh",
+        "href": "https://discord.com/users/",
+        "icon": "FaDiscord"
+      }
+    ]
+  },
+  "footer": {
+    "name": "Benosh Benoy",
+    "builtWith": "Next.js"
+  }
+}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import PortalButtons from "@/components/ui/PortalButtons";
 import HeroPortrait from "@/components/ui/HeroPortrait";
+import { content } from "@/lib/content";
 
 const container = {
   hidden: {},
@@ -21,6 +22,8 @@ const item = {
 };
 
 export default function Hero() {
+  const hero = content.hero;
+
   return (
     <section
       id="hero"
@@ -45,7 +48,7 @@ export default function Hero() {
               className="label flex items-center justify-center gap-2.5 text-bone-mute md:justify-start"
             >
               <span className="h-1 w-1 animate-pulse rounded-full bg-lichen" />
-              Available for collaborations
+              {hero.availability}
             </motion.p>
 
             {/* One weight, two styles. The italic surname is the whole
@@ -55,28 +58,22 @@ export default function Hero() {
               variants={item}
               className="mt-7 font-display text-[3.5rem] leading-[0.92] tracking-[-0.02em] sm:text-7xl lg:text-[5.5rem]"
             >
-              Benosh
+              {hero.nameLine1}
               <br />
-              <span className="italic text-lichen">Benoy</span>
+              <span className="italic text-lichen">{hero.nameLine2}</span>
             </motion.h1>
 
             <motion.p
               variants={item}
               className="mx-auto mt-7 max-w-md text-[0.975rem] leading-relaxed text-bone-dim md:mx-0"
             >
-              <span className="text-bone">
-                Developer. Designer. Strategist.
-              </span>
+              <span className="text-bone">{hero.tagline}</span>
               <br />
-              Computer Science student. Building things at the intersection of
-              code, AI, and design.
+              {hero.intro}
             </motion.p>
 
-            <motion.p
-              variants={item}
-              className="label mt-10 text-bone-mute"
-            >
-              My sites
+            <motion.p variants={item} className="label mt-10 text-bone-mute">
+              {hero.portalLabel}
             </motion.p>
 
             {/* PortalButtons owns its own entrance stagger, so no variant wrapper. */}
@@ -89,16 +86,16 @@ export default function Hero() {
               className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm md:justify-start"
             >
               <a
-                href="#projects"
+                href={hero.primaryLink.href}
                 className="border-b border-line-strong pb-0.5 text-bone transition-colors hover:border-lichen hover:text-lichen"
               >
-                Scroll my work
+                {hero.primaryLink.label}
               </a>
               <a
-                href="#contact"
+                href={hero.secondaryLink.href}
                 className="text-bone-dim transition-colors hover:text-bone"
               >
-                Get in touch
+                {hero.secondaryLink.label}
               </a>
             </motion.div>
           </motion.div>
@@ -134,16 +131,20 @@ export default function Hero() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
           <div className="label flex items-center gap-4 text-bone-mute sm:gap-7">
-            <span>Kerala, India</span>
-            <span className="hidden h-2.5 w-px bg-line-strong sm:block" />
-            <span className="hidden sm:block">MBCET</span>
+            <span>{hero.rail.location}</span>
+            {hero.rail.affiliation ? (
+              <>
+                <span className="hidden h-2.5 w-px bg-line-strong sm:block" />
+                <span className="hidden sm:block">{hero.rail.affiliation}</span>
+              </>
+            ) : null}
           </div>
 
           <a
-            href="#about"
+            href={hero.rail.scrollHref}
             className="label group flex items-center gap-3 text-bone-mute transition-colors hover:text-bone"
           >
-            Scroll
+            {hero.rail.scrollLabel}
             <span className="flex h-7 w-4 justify-center border border-line-strong pt-1 transition-colors group-hover:border-lichen">
               <span className="h-1 w-px animate-scroll-cue bg-lichen" />
             </span>

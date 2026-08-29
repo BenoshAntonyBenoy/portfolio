@@ -2,16 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Live", href: "#live" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
+import { content } from "@/lib/content";
 
 export default function Navbar() {
+  const { brand, brandAccent, links, cta } = content.nav;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -35,7 +29,8 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Was "benosh.dev" — the site has always been served from benosh.tech. */}
         <a href="#" className="label text-bone">
-          benosh<span className="text-lichen">.tech</span>
+          {brand}
+          <span className="text-lichen">{brandAccent}</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -52,10 +47,10 @@ export default function Navbar() {
         </ul>
 
         <a
-          href="#contact"
+          href={cta.href}
           className="border border-line-strong px-4 py-1.5 text-sm text-bone transition-colors hover:border-lichen hover:text-lichen"
         >
-          Let&apos;s talk
+          {cta.label}
         </a>
       </nav>
     </motion.header>

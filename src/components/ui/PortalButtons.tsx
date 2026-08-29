@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { liveSites } from "@/lib/data";
+import { liveSites } from "@/lib/content";
 
 // Each tile drives its own entrance — `custom` carries the index so the two
 // stagger in behind the hero copy without depending on a parent variant tree.

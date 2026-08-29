@@ -3,7 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { liveSites, type LiveSite } from "@/lib/data";
+import { content, type LiveSite } from "@/lib/content";
 
 const card: Variants = {
   hover: { y: -3, transition: { type: "spring", stiffness: 320, damping: 24 } },
@@ -35,7 +35,7 @@ function LiveCard({ site, index }: { site: LiveSite; index: number }) {
           <span className="h-2.5 w-px bg-line-strong" />
           <span className="flex items-center gap-2">
             <span className="h-1 w-1 animate-pulse rounded-full bg-lichen" />
-            Online
+            {content.liveSites.onlineLabel}
           </span>
         </div>
 
@@ -58,7 +58,7 @@ function LiveCard({ site, index }: { site: LiveSite; index: number }) {
         <div className="mt-8 flex items-center justify-between border-t border-line pt-5">
           <span className="label text-bone-mute">{site.domain}</span>
           <span className="flex items-center gap-2 text-sm text-bone transition-colors group-hover:text-lichen">
-            Open
+            {content.liveSites.openLabel}
             <motion.span aria-hidden variants={cardArrow}>
               ↗
             </motion.span>
@@ -71,20 +71,14 @@ function LiveCard({ site, index }: { site: LiveSite; index: number }) {
 
 export default function LiveSites() {
   return (
-    <section id="live" className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <SectionHeading
-        index="03"
-        label="Live now"
-        title={
-          <>
-            Try it <span className="italic text-lichen">yourself</span>
-          </>
-        }
-        lede="Deployed and running — open either one in a new tab."
-      />
+    <section
+      id="live"
+      className="relative mx-auto max-w-6xl px-6 py-24 md:py-32"
+    >
+      <SectionHeading heading={content.liveSites.heading} />
 
       <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2">
-        {liveSites.map((site, i) => (
+        {content.liveSites.items.map((site, i) => (
           <LiveCard key={site.href} site={site} index={i} />
         ))}
       </div>

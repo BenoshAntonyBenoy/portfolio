@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { achievements } from "@/lib/data";
+import { content } from "@/lib/content";
 
 const container = {
   hidden: {},
@@ -19,30 +19,24 @@ const item = {
 };
 
 export default function Achievements() {
+  const section = content.achievements;
+
   return (
     <section id="beyond" className="relative overflow-hidden py-24 md:py-32">
       {/* Kept: the oversized ghost pawn. It's specific to him and it's doing
           composition, not decoration — which is why it survived the cull that
           took the five section glows. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-16 top-1/2 -z-10 -translate-y-1/2 select-none font-display text-[34rem] leading-none text-bone/[0.028]"
-      >
-        ♟
-      </div>
+      {section.watermark ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-16 top-1/2 -z-10 -translate-y-1/2 select-none font-display text-[34rem] leading-none text-bone/[0.028]"
+        >
+          {section.watermark}
+        </div>
+      ) : null}
 
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading
-          index="05"
-          label="Beyond code"
-          title={
-            <>
-              Strategy, on and off the{" "}
-              <span className="italic text-lichen">board</span>
-            </>
-          }
-          lede="The same thinking I bring to chess and markets shows up in how I build — patient, deliberate, a few moves ahead."
-        />
+        <SectionHeading heading={section.heading} />
 
         {/* A read-down list rather than a grid of glowing tiles — five items
             never divided evenly into three columns anyway. */}
@@ -53,7 +47,7 @@ export default function Achievements() {
           viewport={{ once: true, margin: "-80px" }}
           className="mt-16 border-t border-line"
         >
-          {achievements.map((a) => (
+          {section.items.map((a) => (
             <motion.li
               key={a.title}
               variants={item}

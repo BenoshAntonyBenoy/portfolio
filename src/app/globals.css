@@ -119,7 +119,8 @@ body {
     inset: 0;
   }
   .code-texture::before {
-    background: url("/texture/code.webp") center / cover no-repeat;
+    background: var(--code-texture, url("/texture/code.webp")) center / cover
+      no-repeat;
     /* The source is a shallow-depth-of-field shot, so its top-left corner is
        still sharp enough to read as code. A little blur on top of the crush
        takes it the rest of the way to texture. */

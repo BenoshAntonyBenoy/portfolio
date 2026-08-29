@@ -1,22 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiOutlineMail, HiDownload } from "react-icons/hi";
-import { FaLinkedinIn, FaGithub, FaDiscord } from "react-icons/fa6";
+import { HiDownload } from "react-icons/hi";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { contactLinks, type ContactLink } from "@/lib/data";
+import { content, type ContactLink } from "@/lib/content";
+import { contactIcon } from "@/lib/icons";
 
-const iconMap = {
-  email: HiOutlineMail,
-  linkedin: FaLinkedinIn,
-  github: FaGithub,
-  discord: FaDiscord,
-} as const;
+/** mailto:, tel: and #anchor targets stay in the tab; everything else opens out. */
+function opensInNewTab(href: string) {
+  return /^https?:\/\//i.test(href);
+}
 
 function LinkCard({ link, index }: { link: ContactLink; index: number }) {
-  const Icon = iconMap[link.iconName];
-  const external = link.iconName !== "email";
+  const Icon = contactIcon(link.icon);
+  const external = opensInNewTab(link.href);
   return (
     <motion.a
       href={link.href}
@@ -46,22 +44,14 @@ function LinkCard({ link, index }: { link: ContactLink; index: number }) {
 }
 
 export default function Contact() {
+  const contact = content.contact;
+
   return (
     <section
       id="contact"
       className="relative mx-auto max-w-6xl px-6 py-24 md:py-32"
     >
-      <SectionHeading
-        index="06"
-        label="Get in touch"
-        title={
-          <>
-            Let&apos;s build something{" "}
-            <span className="italic text-lichen">remarkable</span>
-          </>
-        }
-        lede="Got an idea, a role, or just want to talk shop about AI, design, or chess? My inbox is open."
-      />
+      <SectionHeading heading={contact.heading} />
 
       <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-[8rem_1fr]">
         {/* Empty rail keeps the content aligned under the section title. */}
@@ -72,19 +62,19 @@ export default function Contact() {
             {/* The single solid CTA on the page. It used to be a purple→cyan
                 gradient pill, which is the one shape everyone recognises. */}
             <a
-              href="/resume.pdf"
+              href={contact.resume.href}
               download
               className="inline-flex items-center gap-3 bg-lichen px-7 py-3.5 text-[0.95rem] font-medium text-ink transition-colors hover:bg-bone"
             >
               <HiDownload className="text-lg" />
-              Download Résumé
+              {contact.resume.label}
             </a>
           </Reveal>
 
           {/* Two-up only from lg. At tablet widths the rail already eats 9rem,
               which left the cards too narrow for a full email address. */}
           <div className="mt-10 grid grid-cols-1 gap-3 lg:grid-cols-2">
-            {contactLinks.map((link, i) => (
+            {contact.links.map((link, i) => (
               <LinkCard key={link.label} link={link} index={i} />
             ))}
           </div>

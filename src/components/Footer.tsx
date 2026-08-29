@@ -1,4 +1,4 @@
-import { liveSites } from "@/lib/data";
+import { content, liveSites } from "@/lib/content";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,7 +9,7 @@ export default function Footer() {
           BENOY") instead of wrapping as units. */}
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 sm:justify-between">
         <p className="label-tight whitespace-nowrap text-bone-mute">
-          © {year} Benosh Benoy
+          © {year} {content.footer.name}
         </p>
 
         <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
@@ -27,7 +27,9 @@ export default function Footer() {
         </nav>
 
         {/* Was "Next.js + Three.js" — there's no Three.js left in the bundle. */}
-        <p className="label-tight whitespace-nowrap text-bone-mute">Next.js</p>
+        <p className="label-tight whitespace-nowrap text-bone-mute">
+          {content.footer.builtWith}
+        </p>
       </div>
     </footer>
   );

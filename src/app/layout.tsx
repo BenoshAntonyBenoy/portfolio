@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { content } from "@/lib/content";
 import "./globals.css";
 
 /**
@@ -38,19 +39,18 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Benosh Benoy — Developer. Designer. Strategist.",
-  description:
-    "Portfolio of Benosh Benoy — Computer Science student building at the intersection of code, AI, and design. Projects in Python, AI, and UI/UX.",
+  title: content.site.title,
+  description: content.site.description,
   // The canonical serving origin: benosh.tech 308-redirects to www, so OG and
   // Twitter card URLs should resolve against the host that actually returns 200.
-  metadataBase: new URL("https://www.benosh.tech"),
+  metadataBase: new URL(content.site.url),
   openGraph: {
-    title: "Benosh Benoy — Developer. Designer. Strategist.",
-    description: "Computer Science student. Code, AI, and UI/UX design.",
+    title: content.site.ogTitle,
+    description: content.site.ogDescription,
     type: "website",
   },
   twitter: {
-    description: "Computer Science student. Code, AI, and UI/UX design.",
+    description: content.site.twitterDescription,
   },
 };
 

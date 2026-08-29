@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { skills, skillGroups } from "@/lib/data";
+import { content } from "@/lib/content";
+import { skillIcon } from "@/lib/icons";
 
 const container = {
   hidden: {},
@@ -19,25 +20,22 @@ const item = {
 };
 
 export default function Skills() {
+  const skills = content.skills;
+
   return (
     <section
       id="skills"
       className="relative mx-auto max-w-6xl px-6 py-24 md:py-32"
     >
-      <SectionHeading
-        index="04"
-        label="Toolkit"
-        title={
-          <>
-            Skills &amp; <span className="italic text-lichen">tools</span>
-          </>
-        }
-        lede="Grouped by what they're for, rather than scattered across a grid of tiles."
-      />
+      <SectionHeading heading={skills.heading} />
 
       {/* Grouped columns of hairline-separated rows. The old version was eight
           identical cards that each bloomed a different colour on hover — the
-          colour was carrying no information, so it's gone. */}
+          colour was carrying no information, so it's gone.
+
+          A group with nothing in it is skipped rather than left as an empty
+          column: renaming a group in the panel without moving its skills across
+          would otherwise leave a labelled void in the grid. */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -45,16 +43,18 @@ export default function Skills() {
         viewport={{ once: true, margin: "-80px" }}
         className="mt-16 grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {skillGroups.map((group) => (
-          <div key={group}>
-            <p className="label border-b border-line pb-3 text-bone-mute">
-              {group}
-            </p>
-            <ul>
-              {skills
-                .filter((s) => s.group === group)
-                .map((skill) => {
-                  const Icon = skill.icon;
+        {skills.groups.map((group) => {
+          const members = skills.items.filter((s) => s.group === group);
+          if (members.length === 0) return null;
+
+          return (
+            <div key={group}>
+              <p className="label border-b border-line pb-3 text-bone-mute">
+                {group}
+              </p>
+              <ul>
+                {members.map((skill) => {
+                  const Icon = skillIcon(skill.icon);
                   return (
                     <motion.li
                       key={skill.name}
@@ -68,9 +68,10 @@ export default function Skills() {
                     </motion.li>
                   );
                 })}
-            </ul>
-          </div>
-        ))}
+              </ul>
+            </div>
+          );
+        })}
       </motion.div>
     </section>
   );
