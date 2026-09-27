@@ -11,12 +11,9 @@ import {
 import { ComponentRef, Suspense, useRef } from "react";
 import * as THREE from "three";
 
-// The `segments` knob existed so the blob could be cheapened when it was only a
-// small backdrop behind the avatar. It's the centrepiece again, so it's always
-// rendered at full tessellation and the parameter is gone.
-const SEGMENTS = 256;
-
-function Blob() {
+// `segments` is dialled down when the blob is only a small backdrop behind the
+// avatar — 256² is a lot of vertices for something a few hundred pixels wide.
+export function Blob({ segments = 256 }: { segments?: number }) {
   const mesh = useRef<THREE.Mesh>(null);
   // Infer the drei material instance type (exposes the mutable `distort` uniform).
   const matRef = useRef<ComponentRef<typeof MeshDistortMaterial>>(null);
@@ -50,7 +47,7 @@ function Blob() {
 
   return (
     <Float speed={1.6} rotationIntensity={0.5} floatIntensity={0.9}>
-      <Sphere ref={mesh} args={[1.3, SEGMENTS, SEGMENTS]}>
+      <Sphere ref={mesh} args={[1.3, segments, segments]}>
         <MeshDistortMaterial
           ref={matRef}
           color="#7c3aed"
