@@ -1,4 +1,4 @@
-import { content, liveSites } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -13,17 +13,9 @@ export default function Footer() {
         </p>
 
         <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          {liveSites.map((site) => (
-            <a
-              key={site.href}
-              href={site.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-tight whitespace-nowrap text-bone-mute transition-colors hover:text-bone"
-            >
-              {site.domain} ↗
-            </a>
-          ))}
+          <a href="#websites" className="label-tight whitespace-nowrap text-bone-mute transition-colors hover:text-bone">
+            {content.liveSites.filters.collection} ↓
+          </a>
         </nav>
 
         {/* Was "Next.js + Three.js" — there's no Three.js left in the bundle. */}

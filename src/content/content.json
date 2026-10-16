@@ -20,8 +20,8 @@
         "href": "#projects"
       },
       {
-        "label": "Live",
-        "href": "#live"
+        "label": "Websites",
+        "href": "#websites"
       },
       {
         "label": "Skills",
@@ -43,7 +43,7 @@
     "nameLine2": "Benoy",
     "tagline": "Developer. Designer. Strategist.",
     "intro": "Computer Science student. Building things at the intersection of code, AI, and design.",
-    "portalLabel": "My sites",
+    "portalLabel": "Explore my websites",
     "primaryLink": {
       "label": "Scroll my work",
       "href": "#projects"
@@ -170,39 +170,353 @@
   "liveSites": {
     "heading": {
       "index": "03",
-      "label": "Live now",
-      "title": "Try it *yourself*",
-      "lede": "Deployed and running — open either one in a new tab."
+      "label": "Websites",
+      "title": "Every site, one *place*",
+      "lede": "My portfolios, websites, web apps, and experiments. Open a published site or explore the projects still running locally."
     },
     "onlineLabel": "Online",
     "openLabel": "Open",
     "items": [
       {
-        "title": "Portfolio",
-        "tag": "Live site",
+        "title": "Benosh.tech",
+        "tag": "Main portfolio",
+        "domain": "www.benosh.tech",
+        "href": "https://www.benosh.tech",
+        "description": "My main portfolio: code, design, AI projects, and the complete website collection.",
+        "tech": [
+          "Next.js",
+          "TypeScript",
+          "Tailwind"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "Benosh — Arena",
+        "tag": "Portfolio",
         "domain": "portfolio.benosh.tech",
         "href": "https://portfolio.benosh.tech",
-        "description": "A second take on my portfolio — an editorial, arena-style layout with the same work presented in a very different visual language.",
+        "description": "An editorial portfolio with an arena-inspired layout and a different presentation of my work.",
         "tech": [
           "React",
           "Vite",
+          "TypeScript"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "Benosh — Glow",
+        "tag": "Portfolio",
+        "domain": "glow.benosh.tech",
+        "href": "https://glow.benosh.tech",
+        "description": "A neon portfolio with an interactive 3D avatar, animated visuals, and a dark interface.",
+        "tech": [
+          "Next.js",
+          "Three.js",
+          "Framer Motion"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "Benosh — Spidey",
+        "tag": "Portfolio",
+        "domain": "spidey.benosh.tech",
+        "href": "https://spidey.benosh.tech",
+        "description": "My Spider-Man-inspired portfolio, with comic-book details and a friendly neighbourhood identity.",
+        "tech": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "Benosh — Redesign",
+        "tag": "Portfolio version",
+        "domain": "benosh-redesign.vercel.app",
+        "href": "https://benosh-redesign.vercel.app",
+        "description": "A separately published version of my portfolio redesign, exploring an editorial visual direction.",
+        "tech": [
+          "Next.js",
           "TypeScript",
           "Tailwind"
-        ]
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "V Darshan",
+        "tag": "Client portfolio",
+        "domain": "portfolio-darshan-two.vercel.app",
+        "href": "https://portfolio-darshan-two.vercel.app",
+        "description": "A document-style portfolio for V Darshan, presenting his computer science and AI studies and projects.",
+        "tech": [
+          "React",
+          "Vite",
+          "TypeScript"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "Veena C G",
+        "tag": "Client portfolio",
+        "domain": "veena-cg.vercel.app",
+        "href": "https://veena-cg.vercel.app",
+        "description": "A personal portfolio for Veena C G, created with Portfolio Forge to showcase her studies, skills, and work.",
+        "tech": [
+          "React",
+          "Vite",
+          "Portfolio Forge"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "Sherry Shaji Thomas",
+        "tag": "Client portfolio",
+        "domain": "portfolio-sherry-alpha.vercel.app",
+        "href": "https://portfolio-sherry-alpha.vercel.app",
+        "description": "A colourful portfolio for Sherry Shaji Thomas, bringing together projects, experience, and a personal gallery.",
+        "tech": [
+          "React",
+          "Vite",
+          "TypeScript"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "RentRecord",
+        "tag": "Rental platform",
+        "domain": "rent-record-delta.vercel.app",
+        "href": "https://rent-record-delta.vercel.app",
+        "description": "A rental platform for India where landlords and tenants can review each other after a tenancy.",
+        "tech": [
+          "React",
+          "Vite",
+          "TypeScript"
+        ],
+        "category": "Web apps"
       },
       {
         "title": "BQuick",
-        "tag": "Live app",
+        "tag": "Typing trainer",
         "domain": "bquick.benosh.tech",
         "href": "https://bquick.benosh.tech",
-        "description": "A typing trainer that measures the rhythm between your keystrokes, finds your weakest key-to-key transitions, and drills them with real words until they smooth out.",
+        "description": "An adaptive typing trainer with transition drills, custom text, and a code typing mode.",
         "tech": [
           "JavaScript",
           "Web Audio",
           "localStorage"
-        ]
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "BeMag",
+        "tag": "Browser arcade",
+        "domain": "bemag.benosh.tech",
+        "href": "https://bemag.benosh.tech",
+        "description": "A galaxy-themed arcade featuring Emoji Bounce, a canvas game with evolving characters and difficulty.",
+        "tech": [
+          "React",
+          "TypeScript",
+          "Canvas"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Eventer",
+        "tag": "Events marketplace",
+        "domain": "kerala-events-ebon.vercel.app",
+        "href": "https://kerala-events-ebon.vercel.app",
+        "description": "An event-services marketplace for Trivandrum and Kochi, with published starting prices and an event planner.",
+        "tech": [
+          "React",
+          "Vite",
+          "TypeScript"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Codern",
+        "tag": "Course storefront",
+        "domain": "courses-platform-steel.vercel.app",
+        "href": "https://courses-platform-steel.vercel.app",
+        "description": "A computer courses storefront with course browsing, a cart, pricing, and team pages.",
+        "tech": [
+          "Next.js",
+          "Tailwind",
+          "TypeScript"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Hello World",
+        "tag": "Career learning platform",
+        "domain": "helloworld.benosh.tech",
+        "href": "https://helloworld.benosh.tech",
+        "description": "A learning platform that uses job advertisements to help students understand the skills industry asks for.",
+        "tech": [
+          "React",
+          "Vite",
+          "Python"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "B Studio",
+        "tag": "Agency website",
+        "domain": "b-agency-next-template.vercel.app",
+        "href": "https://b-agency-next-template.vercel.app",
+        "description": "An animated agency website with services, work, testimonials, pricing, and a reusable content structure.",
+        "tech": [
+          "Next.js",
+          "Tailwind",
+          "Animation"
+        ],
+        "category": "Tools & templates"
+      },
+      {
+        "title": "Budget Tracker",
+        "tag": "Finance web app",
+        "domain": "benoshantonybenoy.github.io/budget-tracker",
+        "href": "https://benoshantonybenoy.github.io/budget-tracker/",
+        "description": "Set a monthly budget in rupees, log expenses by category, and track your remaining balance.",
+        "tech": [
+          "React",
+          "Vite",
+          "localStorage"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Watchlist",
+        "tag": "Film web app",
+        "domain": "benoshantonybenoy.github.io/film-watchlist",
+        "href": "https://benoshantonybenoy.github.io/film-watchlist/",
+        "description": "Keep a film watchlist, mark films as watched, add notes, and give them star ratings.",
+        "tech": [
+          "React",
+          "Vite",
+          "localStorage"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Loadout",
+        "tag": "Gaming storefront",
+        "domain": "benoshantonybenoy.github.io/loadout-game-store",
+        "href": "https://benoshantonybenoy.github.io/loadout-game-store/",
+        "description": "Browse gaming hardware and games, filter products, and build a cart that stays saved in your browser.",
+        "tech": [
+          "React",
+          "Vite",
+          "localStorage"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Second Wind",
+        "tag": "Gaming blog",
+        "domain": "benoshantonybenoy.github.io/second-wind-gaming-blog",
+        "href": "https://benoshantonybenoy.github.io/second-wind-gaming-blog/",
+        "description": "A static gaming blog with a dark editorial theme, post listings, and full article views.",
+        "tech": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "MuLearn — GitHub Pages",
+        "tag": "Learning project",
+        "domain": "benoshantonybenoy.github.io/learn-github-pages",
+        "href": "https://benoshantonybenoy.github.io/learn-github-pages/",
+        "description": "My hosted MuLearn GitHub Pages learning exercise.",
+        "tech": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "category": "Web apps"
+      },
+      {
+        "title": "Portfolio Forge",
+        "tag": "Portfolio builder",
+        "domain": "Not published",
+        "href": "",
+        "description": "A local portfolio builder with multiple layouts, editable content, and a publishing workflow.",
+        "tech": [
+          "React",
+          "Node.js",
+          "Vite"
+        ],
+        "category": "Tools & templates",
+        "availability": "local"
+      },
+      {
+        "title": "Site Starter",
+        "tag": "Website template",
+        "domain": "Not published",
+        "href": "",
+        "description": "A reusable website starter with a token system, dark mode, accessible components, and a central content file.",
+        "tech": [
+          "React",
+          "Vite",
+          "Tailwind"
+        ],
+        "category": "Tools & templates",
+        "availability": "local"
+      },
+      {
+        "title": "My Site",
+        "tag": "Website scaffold",
+        "domain": "github.com/BenoshAntonyBenoy/my-site",
+        "href": "https://github.com/BenoshAntonyBenoy/my-site",
+        "description": "A separate website scaffold built from Site Starter, ready for its own content and branding.",
+        "tech": [
+          "React",
+          "Vite",
+          "Tailwind"
+        ],
+        "category": "Tools & templates",
+        "availability": "local"
+      },
+      {
+        "title": "ParkSense AI",
+        "tag": "Parking dashboard",
+        "domain": "Not published",
+        "href": "",
+        "description": "A local browser dashboard for the parking detection and analysis project.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Computer Vision"
+        ],
+        "category": "Web apps",
+        "availability": "local"
+      },
+      {
+        "title": "Portfolio Control Room",
+        "tag": "Private dashboard",
+        "domain": "Not published",
+        "href": "",
+        "description": "A private control room for managing portfolio sites, protected by a login.",
+        "tech": [
+          "Node.js",
+          "Server-rendered UI"
+        ],
+        "category": "Web apps",
+        "availability": "local"
       }
-    ]
+    ],
+    "filters": {
+      "all": "All websites",
+      "search": "Search websites",
+      "empty": "No websites match. Try another name or category.",
+      "count": "websites",
+      "local": "Local project",
+      "localAction": "Not published",
+      "collection": "View all websites",
+      "source": "Source"
+    }
   },
   "skills": {
     "heading": {

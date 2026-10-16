@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { liveSites } from "@/lib/content";
+import { content, liveSites } from "@/lib/content";
 
 // Each tile drives its own entrance — `custom` carries the index so the two
 // stagger in behind the hero copy without depending on a parent variant tree.
@@ -37,8 +37,9 @@ const arrow: Variants = {
  */
 export default function PortalButtons() {
   return (
+    <div>
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-      {liveSites.map((site, i) => (
+      {liveSites.filter(site => site.href !== content.site.url).slice(0, 2).map((site, i) => (
         <motion.a
           key={site.href}
           href={site.href}
@@ -74,6 +75,10 @@ export default function PortalButtons() {
           </div>
         </motion.a>
       ))}
+    </div>
+    <a href="#websites" className="mt-4 inline-flex min-h-11 items-center gap-3 text-sm text-bone-mute transition-colors hover:text-lichen">
+      {content.liveSites.filters.collection} <span aria-hidden>↓</span>
+    </a>
     </div>
   );
 }

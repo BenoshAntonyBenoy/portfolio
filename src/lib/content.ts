@@ -44,6 +44,8 @@ export type LiveSite = {
   href: string;
   description: string;
   tech: string[];
+  category?: string;
+  availability?: "local";
 };
 
 export type Skill = {
@@ -107,6 +109,7 @@ export type SiteContent = {
     heading: Heading;
     onlineLabel: string;
     openLabel: string;
+    filters: { all: string; search: string; empty: string; count: string; local: string; localAction: string; collection: string; source: string };
     items: LiveSite[];
   };
   skills: { heading: Heading; groups: string[]; items: Skill[] };
@@ -126,8 +129,6 @@ export type SiteContent = {
 
 export const content = raw as SiteContent;
 
-// Convenience re-exports for the two lists used by more than one section:
-// liveSites feeds the hero portal tiles and the footer as well as its own
-// section, and both would otherwise reach three levels into `content`.
-export const liveSites = content.liveSites.items;
+// Only published sites are eligible for the hero's quick links.
+export const liveSites = content.liveSites.items.filter(site => site.href && site.availability !== "local");
 export const projects = content.projects.items;

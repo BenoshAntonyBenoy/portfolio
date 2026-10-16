@@ -55,7 +55,7 @@ const SECTIONS = [
   { id: "statement", label: "Statement" },
   { id: "about", label: "About", count: (c) => c.about.facts.length },
   { id: "projects", label: "Projects", count: (c) => c.projects.items.length },
-  { id: "live", label: "Live sites", count: (c) => c.liveSites.items.length },
+  { id: "live", label: "Websites", count: (c) => c.liveSites.items.length },
   { id: "skills", label: "Skills", count: (c) => c.skills.items.length },
   {
     id: "beyond",
@@ -926,9 +926,12 @@ const renderers = {
           field('"Open" label', text(live, "openLabel"), "Bottom-right of each card.")
         )
       ),
+      card("Collection labels", h("div", { class: "row row-2" },
+        ...Object.keys(live.filters).map(key => field(key, text(live.filters, key)))
+      )),
       h("p", {
         class: "hint",
-        text: "These also fill the two big buttons in the hero and the links in the footer.",
+        text: "The full website collection. The first two published sites after the main site also appear in the hero.",
       }),
       sortableList({
         list: live.items,
@@ -943,7 +946,7 @@ const renderers = {
           description: "",
           tech: [],
         }),
-        addLabel: "Add a live site",
+        addLabel: "Add a website",
         body: (s, i, setTitle) =>
           h(
             "div",
@@ -958,7 +961,11 @@ const renderers = {
               "div",
               { class: "row row-2" },
               field("Domain shown", text(s, "domain"), "Without https://"),
-              field("Full address", text(s, "href"), "Must start with https://")
+              field("Full address", text(s, "href"), "Must start with https://; can be blank for a local project.")
+            ),
+            h("div", { class: "row row-2" },
+              field("Category", text(s, "category"), 'e.g. "Portfolios", "Web apps", or "Tools & templates".'),
+              field("Availability", select(s, "availability", ["", "local"], { allowEmpty: false }), 'Choose "local" for an unpublished project; otherwise leave blank.')
             ),
             field("Description", area(s, "description", { rows: 3 })),
             field("Tech tags", chips(s.tech), "Enter after each one.")

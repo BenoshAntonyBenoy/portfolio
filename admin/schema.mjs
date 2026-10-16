@@ -290,20 +290,28 @@ export function validateContent(c) {
     checkHeading(p, "Live sites", live.heading);
     p.str("Live sites", '"online" label', live.onlineLabel);
     p.str("Live sites", '"open" label', live.openLabel);
+    for (const key of ["all", "search", "empty", "count", "local", "localAction", "collection", "source"]) {
+      p.str("Website filters", key, live.filters?.[key]);
+    }
     if (p.list("Live sites", "sites", live.items, 1)) {
       live.items.forEach((item, i) => {
         const where = `Live site ${i + 1}${str(item?.title) ? ` (${item.title})` : ""}`;
         p.str(where, "title", item?.title);
         p.str(where, "type label", item?.tag);
         p.str(where, "domain", item?.domain);
-        p.str(where, "link", item?.href);
+        p.blankable(where, "category", item?.category);
+        if (item?.availability != null && !["", "local"].includes(item.availability)) {
+          p.add(where, 'availability must be blank or "local"');
+        }
+        if (item?.availability === "local") p.blankable(where, "link", item?.href);
+        else p.str(where, "link", item?.href);
         if (str(item?.href) && !/^https?:\/\//i.test(item.href)) {
           p.add(where, "link must start with http:// or https://");
         }
         p.str(where, "description", item?.description);
         p.strList(where, "tech tags", item?.tech, 1);
       });
-      p.unique("Live sites", "link", live.items.map((i) => i?.href));
+      p.unique("Live sites", "link", live.items.map((i) => i?.href).filter(Boolean));
     }
   }
 
