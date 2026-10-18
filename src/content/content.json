@@ -178,6 +178,32 @@
     "openLabel": "Open",
     "items": [
       {
+        "title": "Benosh — Spidey",
+        "tag": "Portfolio",
+        "domain": "spidey.benosh.tech",
+        "href": "https://spidey.benosh.tech",
+        "description": "My Spider-Man-inspired portfolio, with comic-book details and a friendly neighbourhood identity.",
+        "tech": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "category": "Portfolios"
+      },
+      {
+        "title": "BeMag",
+        "tag": "Browser arcade",
+        "domain": "bemag.benosh.tech",
+        "href": "https://bemag.benosh.tech",
+        "description": "A galaxy-themed arcade featuring Emoji Bounce, a canvas game with evolving characters and difficulty.",
+        "tech": [
+          "React",
+          "TypeScript",
+          "Canvas"
+        ],
+        "category": "Web apps"
+      },
+      {
         "title": "Benosh.tech",
         "tag": "Main portfolio",
         "domain": "www.benosh.tech",
@@ -213,19 +239,6 @@
           "Next.js",
           "Three.js",
           "Framer Motion"
-        ],
-        "category": "Portfolios"
-      },
-      {
-        "title": "Benosh — Spidey",
-        "tag": "Portfolio",
-        "domain": "spidey.benosh.tech",
-        "href": "https://spidey.benosh.tech",
-        "description": "My Spider-Man-inspired portfolio, with comic-book details and a friendly neighbourhood identity.",
-        "tech": [
-          "HTML",
-          "CSS",
-          "JavaScript"
         ],
         "category": "Portfolios"
       },
@@ -304,19 +317,6 @@
           "JavaScript",
           "Web Audio",
           "localStorage"
-        ],
-        "category": "Web apps"
-      },
-      {
-        "title": "BeMag",
-        "tag": "Browser arcade",
-        "domain": "bemag.benosh.tech",
-        "href": "https://bemag.benosh.tech",
-        "description": "A galaxy-themed arcade featuring Emoji Bounce, a canvas game with evolving characters and difficulty.",
-        "tech": [
-          "React",
-          "TypeScript",
-          "Canvas"
         ],
         "category": "Web apps"
       },
