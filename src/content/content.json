@@ -425,19 +425,6 @@
         "category": "Web apps"
       },
       {
-        "title": "MuLearn — GitHub Pages",
-        "tag": "Learning project",
-        "domain": "benoshantonybenoy.github.io/learn-github-pages",
-        "href": "https://benoshantonybenoy.github.io/learn-github-pages/",
-        "description": "My hosted MuLearn GitHub Pages learning exercise.",
-        "tech": [
-          "HTML",
-          "CSS",
-          "JavaScript"
-        ],
-        "category": "Web apps"
-      },
-      {
         "title": "Portfolio Forge",
         "tag": "Portfolio builder",
         "domain": "Not published",
