@@ -122,7 +122,7 @@
       {
         "title": "BeMag",
         "tag": "React + TypeScript",
-        "description": "A browser arcade — a galaxy-themed front page and four game cabinets, one of them built. Emoji Bounce is a canvas keepy-uppy game where the paddle tracks your cursor and the screen shifts colour as you climb through star thresholds.",
+        "description": "A browser arcade with four playable games: Emoji Bounce, Assemble, Legends Turf and Last Exit. Play without installing an app or signing in; Legends Turf also has an overall leaderboard.",
         "tech": [
           "React",
           "Vite",
@@ -195,7 +195,7 @@
         "tag": "Browser arcade",
         "domain": "bemag.benosh.tech",
         "href": "https://bemag.benosh.tech",
-        "description": "A galaxy-themed arcade featuring Emoji Bounce, a canvas game with evolving characters and difficulty.",
+        "description": "Four browser games with no install or login: Emoji Bounce, Assemble, Legends Turf and Last Exit. Legends Turf includes an overall leaderboard.",
         "tech": [
           "React",
           "TypeScript",
@@ -258,8 +258,8 @@
       {
         "title": "V Darshan",
         "tag": "Client portfolio",
-        "domain": "portfolio-darshan-two.vercel.app",
-        "href": "https://portfolio-darshan-two.vercel.app",
+        "domain": "vdarshan-portfolio.benosh.tech",
+        "href": "https://vdarshan-portfolio.benosh.tech",
         "description": "A document-style portfolio for V Darshan, presenting his computer science and AI studies and projects.",
         "tech": [
           "React",
@@ -483,15 +483,14 @@
       {
         "title": "Portfolio Control Room",
         "tag": "Private dashboard",
-        "domain": "Not published",
-        "href": "",
-        "description": "A private control room for managing portfolio sites, protected by a login.",
+        "domain": "benosh-control-room.vercel.app",
+        "href": "https://benosh-control-room.vercel.app",
+        "description": "A live, password-protected control room with an inventory of 21 published sites and links to their admin panels.",
         "tech": [
           "Node.js",
           "Server-rendered UI"
         ],
-        "category": "Web apps",
-        "availability": "local"
+        "category": "Web apps"
       }
     ],
     "filters": {
@@ -629,7 +628,7 @@
       {
         "label": "Discord",
         "value": "_benosh",
-        "href": "https://discord.com/users/",
+        "href": "https://discord.com/users/1411172685932920984",
         "icon": "FaDiscord"
       }
     ]

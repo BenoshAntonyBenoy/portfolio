@@ -41,3 +41,4 @@ next-env.d.ts
 
 # admin panel's pre-publish verification build
 /.next-admin-check/
+/.next-featured-check/
