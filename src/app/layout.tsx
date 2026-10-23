@@ -44,13 +44,20 @@ export const metadata: Metadata = {
   // The canonical serving origin: benosh.tech 308-redirects to www, so OG and
   // Twitter card URLs should resolve against the host that actually returns 200.
   metadataBase: new URL(content.site.url),
+  alternates: { canonical: "/" },
   openGraph: {
     title: content.site.ogTitle,
     description: content.site.ogDescription,
     type: "website",
+    url: "/",
+    siteName: "Benosh Benoy",
+    images: [{ url: "/me.png", alt: "Benosh Benoy" }],
   },
   twitter: {
+    card: "summary",
+    title: content.site.ogTitle,
     description: content.site.twitterDescription,
+    images: ["/me.png"],
   },
 };
 
